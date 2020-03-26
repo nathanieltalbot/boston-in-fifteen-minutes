@@ -1,4 +1,9 @@
 module.exports = {
+  siteMetadata: {
+    title: 'Boston in Fifteen Minutes',
+    author: 'Nat Talbot',
+    description: '',
+  },
   plugins: [
     'gatsby-plugin-resolve-src',
     'gatsby-plugin-sass',

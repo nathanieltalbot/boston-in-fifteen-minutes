@@ -6,17 +6,19 @@ import { Marker } from 'react-leaflet';
 import { promiseToFlyTo, getCurrentLocation } from 'lib/map';
 
 import Layout from 'components/Layout';
-import Container from 'components/Container';
+import { Container } from 'react-bootstrap';
 import Map from 'components/Map';
 
 import gatsby_astronaut from 'assets/images/gatsby-astronaut.jpg';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const LOCATION = {
-  lat: 38.9072,
-  lng: -77.0369
+  lat: 42.340260,
+  lng: -71.089109
 };
 const CENTER = [LOCATION.lat, LOCATION.lng];
-const DEFAULT_ZOOM = 2;
+const DEFAULT_ZOOM = 10;
 const ZOOM = 10;
 
 const timeToZoom = 2000;
@@ -86,19 +88,12 @@ const IndexPage = () => {
       <Helmet>
         <title>Home Page</title>
       </Helmet>
-
-      <Map {...mapSettings}>
-        <Marker ref={markerRef} position={CENTER} />
-      </Map>
-
-      <Container type="content" className="text-center home-start">
-        <h2>Still Getting Started?</h2>
-        <p>Run the following in your terminal!</p>
-        <pre>
-          <code>gatsby new [directory] https://github.com/colbyfayock/gatsby-starter-leaflet</code>
-        </pre>
-        <p className="note">Note: Gatsby CLI required globally for the above command</p>
+      <Container>
+        <Map {...mapSettings}>
+          <Marker ref={markerRef} position={CENTER} />
+        </Map>
       </Container>
+      
     </Layout>
   );
 };
