@@ -147,6 +147,8 @@ const IndexPage = () => {
 
   function onEachFeature(feature, layer) {
      console.log("Click")
+     console.log(feature)
+     console.log(layer)
   }
 
 
