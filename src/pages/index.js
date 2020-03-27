@@ -138,10 +138,10 @@ const IndexPage = () => {
   }
   function colorToNeighborhood(neighborhood) {
     if (neighborhoodMapping.neighborhood) {
-      return neighborhoodMapping.neighborhood
+      return {color: neighborhoodMapping.neighborhood}
     }
     else {
-      return '#000000'
+      return {color: '#000000'}
     }
   }
   return (
