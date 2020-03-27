@@ -146,9 +146,7 @@ const IndexPage = () => {
   }
 
   function onEachFeature(feature, layer) {
-      if (feature.properties && feature.properties.name) {
-          layer.bindPopup(feature.properties.name);
-      }
+     console.log("Click")
   }
 
 
