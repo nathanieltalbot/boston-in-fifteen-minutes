@@ -156,7 +156,7 @@ const IndexPage = () => {
         <Map {...mapSettings}>
           <Marker ref={markerRef} position={CENTER} />
           {data.allGeoFeature.edges.map((edge) => 
-          <GeoJSON data={edge.node.geometry} attribution="BARI" color='red' />)}
+          <GeoJSON data={edge.node.geometry} attribution="BARI" color={neighborhoodMapping[edge.node.featureFields.ISD_Nbhd]} />)}
           
         </Map>
         
