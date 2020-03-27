@@ -144,6 +144,13 @@ const IndexPage = () => {
       return {color: '#000000'}
     }
   }
+
+  onEachFeature(feature, layer) {
+    layer.on({
+      click: this.clickToFeature.bind(this)
+    });
+  }
+
   return (
     <Layout pageName="home">
       <Helmet>
@@ -153,7 +160,7 @@ const IndexPage = () => {
         <Map {...mapSettings}>
           <Marker ref={markerRef} position={CENTER} />
           {data.allGeoFeature.edges.map((edge) => 
-          <GeoJSON data={edge.node.geometry} attribution="BARI" style={randColorStyle} />)}
+          <GeoJSON data={edge.node.geometry} attribution="BARI" color='red' />)}
           
         </Map>
         
