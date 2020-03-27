@@ -137,8 +137,8 @@ const IndexPage = () => {
 
   }
   function colorToNeighborhood(neighborhood) {
-    if (neighborhoodMapping.neighborhood) {
-      return () => ({color: neighborhoodMapping.neighborhood})
+    if (neighborhoodMapping[neighborhood]) {
+      return () => ({color: neighborhoodMapping[neighborhood]})
     }
     else {
       return () => ({color: '#000000'})
@@ -153,7 +153,7 @@ const IndexPage = () => {
         <Map {...mapSettings}>
           <Marker ref={markerRef} position={CENTER} />
           {data.allGeoFeature.edges.map((edge) => 
-          <GeoJSON data={edge.node.geometry} style={() => {colorToNeighborhood(edge.node.featureFields.ISD_Nbhd)}}/>)}
+          <GeoJSON data={edge.node.geometry} style={() => {colorToNeighborhood(edge.node.featureFields.ISD_Nbhd)}} />)}
           
         </Map>
         
