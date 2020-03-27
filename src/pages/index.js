@@ -128,7 +128,7 @@ const IndexPage = () => {
     "Chinatown": '#5F9EA0',
     "Financial District/Downtown": '#BC8F8F',
     "Bay Village": '#B22222',
-    "Dorchester": '#DCDCDC',
+    "Dorchester": '#5c5c5c',
     "Jamaica Plain": '#8B4513',
     "West Roxbury": '#7B68EE',
     "Hyde Park": '#00FF00',
@@ -145,6 +145,11 @@ const IndexPage = () => {
     }
   }
 
+  function onEachFeature(feature, layer) {
+      if (feature.properties && feature.properties.name) {
+          layer.bindPopup(feature.properties.name);
+      }
+  }
 
 
   return (
@@ -156,7 +161,7 @@ const IndexPage = () => {
         <Map {...mapSettings}>
           <Marker ref={markerRef} position={CENTER} />
           {data.allGeoFeature.edges.map((edge) => 
-          <GeoJSON data={edge.node.geometry} attribution="BARI" color={neighborhoodMapping[edge.node.featureFields.ISD_Nbhd]} />)}
+          <GeoJSON data={edge.node.geometry} attribution="BARI" color={neighborhoodMapping[edge.node.featureFields.ISD_Nbhd]} onEachFeature={onEachFeature}/>)}
           
         </Map>
         
