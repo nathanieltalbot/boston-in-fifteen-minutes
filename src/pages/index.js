@@ -39,6 +39,10 @@ const popupContentGatsby = `
   </div>
 `;
 
+function randColorStyle(){
+  return {color: '#'+Math.floor(Math.random()*16777215).toString(16)}
+}
+
 const IndexPage = () => {
   const markerRef = useRef();
 
@@ -107,6 +111,8 @@ const IndexPage = () => {
         }
       }
     `)
+
+  
   const numbers = [1, 2, 3, 4, 5];
   return (
     <Layout pageName="home">
@@ -116,7 +122,8 @@ const IndexPage = () => {
       <Container style={{'display': 'flex', 'align-items':'center'}}>
         <Map {...mapSettings}>
           <Marker ref={markerRef} position={CENTER} />
-          {data.allGeoFeature.edges.map((edge) => <GeoJSON data={edge.node.geometry}/>)}
+          {data.allGeoFeature.edges.map((edge) => 
+          <GeoJSON data={edge.node.geometry} style={randColorStyle}/>)}
           
         </Map>
         
