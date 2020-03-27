@@ -145,11 +145,7 @@ const IndexPage = () => {
     }
   }
 
-  onEachFeature(feature, layer) {
-    layer.on({
-      click: this.clickToFeature.bind(this)
-    });
-  }
+
 
   return (
     <Layout pageName="home">
