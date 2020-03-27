@@ -8,6 +8,7 @@ module.exports = {
     'gatsby-plugin-resolve-src',
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-react-leaflet',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -15,6 +16,12 @@ module.exports = {
         path: `${__dirname}/src/assets/images`
       }
     },
-    'gatsby-plugin-react-leaflet'
+    
+    {
+     resolve: `gatsby-source-geo`,
+      options: {
+        path: `./src/assets/shapes/Tracts_Boston BARI.shp`,
+      }
+    },
   ]
 };

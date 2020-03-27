@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Helmet from 'react-helmet';
 import L from 'leaflet';
-import { Marker } from 'react-leaflet';
+import { Marker, GeoJSON } from 'react-leaflet';
 
 import { promiseToFlyTo, getCurrentLocation } from 'lib/map';
 
@@ -11,6 +11,7 @@ import Map from 'components/Map';
 
 import gatsby_astronaut from 'assets/images/gatsby-astronaut.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useStaticQuery, graphql } from 'gatsby'
 
 
 const LOCATION = {
@@ -80,18 +81,45 @@ const IndexPage = () => {
     center: CENTER,
     defaultBaseMap: 'OpenStreetMap',
     zoom: DEFAULT_ZOOM,
-    mapEffect
+    //mapEffect
   };
-
+  const data = useStaticQuery(graphql`
+      query MapQuery {
+        allGeoFeature {
+          edges {
+            node {
+              layer_name
+              featureFields {
+                ISD_Nbhd
+              }
+              geometry {
+                type
+                coordinates
+                envelope {
+                  minX
+                  minY
+                  maxX
+                  maxY
+                }
+              }
+      }
+    }
+        }
+      }
+    `)
+  const numbers = [1, 2, 3, 4, 5];
   return (
     <Layout pageName="home">
       <Helmet>
         <title>Home Page</title>
       </Helmet>
-      <Container>
+      <Container style={{'display': 'flex', 'align-items':'center'}}>
         <Map {...mapSettings}>
           <Marker ref={markerRef} position={CENTER} />
+          {data.allGeoFeature.edges.map((edge) => <GeoJSON data={edge.node.geometry}/>)}
+          
         </Map>
+        
       </Container>
       
     </Layout>
