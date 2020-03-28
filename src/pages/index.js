@@ -1,46 +1,14 @@
 
-import React, { useRef } from 'react';
+import React from 'react';
 import Helmet from 'react-helmet';
-import L from 'leaflet';
-import { Marker, GeoJSON } from 'react-leaflet';
-
-import { promiseToFlyTo, getCurrentLocation } from 'lib/map';
 
 import Layout from 'components/Layout';
 import { Container } from 'react-bootstrap';
-import Map from 'components/Map';
-import Neighborhoods from 'components/Neighborhoods'
-import gatsby_astronaut from 'assets/images/gatsby-astronaut.jpg';
+import MapData from 'components/MapData'
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { useStaticQuery, graphql } from 'gatsby'
-
-
-const LOCATION = {
-  lat: 42.340260,
-  lng: -71.089109
-};
-const CENTER = [LOCATION.lat, LOCATION.lng];
-const DEFAULT_ZOOM = 10;
-const ZOOM = 10;
-
-const timeToZoom = 2000;
-const timeToOpenPopupAfterZoom = 4000;
-const timeToUpdatePopupAfterZoom = timeToOpenPopupAfterZoom + 3000;
-
-const popupContentHello = `<p>Hello 👋</p>`;
-const popupContentGatsby = `
-  <div class="popup-gatsby">
-    <div class="popup-gatsby-image">
-      <img class="gatsby-astronaut" src=${gatsby_astronaut} />
-    </div>
-    <div class="popup-gatsby-content">
-      <h1>Gatsby Leaflet Starter</h1>
-      <p>Welcome to your new Gatsby site. Now go build something great!</p>
-    </div>
-  </div>
-`;
-
-
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 /**
   * randColorStyle
   * @description A function that returns a random hex color as a string
@@ -50,81 +18,18 @@ function randColorStyle(){
 }
 
 const IndexPage = () => {
-  const markerRef = useRef();
-
+  const data = useStaticQuery(graphql`
+          query MdxQuery {
+            mdx(frontmatter: {title: {eq: "Home"}}) {
+              body
+            }
+          }`)
+  
   /**
    * mapEffect
    * @description Fires a callback once the page renders
    * @example Here this is and example of being used to zoom in and set a popup on load
    */
-
-  async function mapEffect({ leafletElement } = {}) {
-    if ( !leafletElement ) return;
-
-    const popup = L.popup({
-      maxWidth: 800
-    });
-
-    const location = await getCurrentLocation().catch(() => LOCATION );
-
-    const { current = {} } = markerRef || {};
-    const { leafletElement: marker } = current;
-
-    marker.setLatLng( location );
-    popup.setLatLng( location );
-    popup.setContent( popupContentHello );
-
-    setTimeout( async () => {
-      await promiseToFlyTo( leafletElement, {
-        zoom: ZOOM,
-        center: location
-      });
-
-      marker.bindPopup( popup );
-
-      setTimeout(() => marker.openPopup(), timeToOpenPopupAfterZoom );
-      setTimeout(() => marker.setPopupContent( popupContentGatsby ), timeToUpdatePopupAfterZoom );
-    }, timeToZoom );
-  }
-
-  const mapSettings = {
-    center: CENTER,
-    defaultBaseMap: 'OpenStreetMap',
-    zoom: DEFAULT_ZOOM,
-    //mapEffect
-  };
-  const data = useStaticQuery(graphql`
-      query MapQuery {
-        allGeoFeature {
-          edges {
-            node {
-              layer_name
-              featureFields {
-                CT_ID_10
-              }
-              geometry {
-                type
-                coordinates
-                envelope {
-                  minX
-                  minY
-                  maxX
-                  maxY
-                }
-              }
-            }
-          }
-        }
-        allAcs1216TractCsv {
-          edges {
-            node {
-              CT_ID_10
-              Commute1030
-            }
-          }
-        }
-      }
-    `)
 
   const neighborhoodMapping = {
     "Beacon Hill": '#B89C30',
@@ -158,13 +63,9 @@ const IndexPage = () => {
       <Helmet>
         <title>Home Page</title>
       </Helmet>
-      <Container style={{'display': 'flex', 'align-items':'center'}}>
-        <Map style={{'display': 'flex', 'align-self':'center'}}{...mapSettings}>
-          <Marker ref={markerRef} position={CENTER} />
-          <Neighborhoods data={data} />
-          
-        </Map>
-        
+      <Container style={{'display': 'flex', 'align-items':'center', 'flex-direction':'column'}}>
+      <MDXRenderer>{data.mdx.body}</MDXRenderer>
+      
       </Container>
     </Layout>
   );

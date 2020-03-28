@@ -1,5 +1,5 @@
 import React from 'react'
-import { Marker, GeoJSON } from 'react-leaflet';
+import { GeoJSON } from 'react-leaflet';
 import ReactDOMServer from "react-dom/server";
 
 function commuteToColor(commute) {

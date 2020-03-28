@@ -9,14 +9,16 @@ module.exports = {
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-react-leaflet',
+    `gatsby-plugin-mdx`,
+    `gatsby-transformer-csv`,
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/assets/images`
+        name: `pages`,
+        path: `${__dirname}/src/content`
       }
     },
-    
     {
      resolve: `gatsby-source-geo`,
       options: {
@@ -30,6 +32,6 @@ module.exports = {
         path: `${__dirname}/src/assets/data`,
       },
     },
-    `gatsby-transformer-csv`,
+    
   ],
 };
