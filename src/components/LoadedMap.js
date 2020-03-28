@@ -1,3 +1,11 @@
 import loadable from '@loadable/component';
+import React from 'react';
 
-export default loadable(() => import('./MapData'))
+const LoadedData = loadable(() => import('./MapData'))
+
+export default function LoadedMap(props)  {
+    return(<>
+        <LoadedData dataSet={props.dataSet}/>
+        </>
+    )
+}
