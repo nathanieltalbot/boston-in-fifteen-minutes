@@ -23,5 +23,13 @@ module.exports = {
         path: `./src/assets/shapes/Tracts_Boston BARI.shp`,
       }
     },
-  ]
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data`,
+        path: `${__dirname}/src/assets/data`,
+      },
+    },
+    `gatsby-transformer-csv`,
+  ],
 };

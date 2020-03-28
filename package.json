@@ -13,6 +13,7 @@
     "gatsby-plugin-sass": "^2.1.30",
     "gatsby-source-filesystem": "^2.1.55",
     "gatsby-source-geo": "https://github.com/nathanieltalbot/gatsby-source-geo",
+    "gatsby-transformer-csv": "^2.2.1",
     "gdal": "^0.9.9",
     "leaflet": "^1.6.0",
     "node-gyp": "^6.1.0",

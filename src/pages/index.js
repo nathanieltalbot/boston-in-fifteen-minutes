@@ -94,7 +94,7 @@ const IndexPage = () => {
             node {
               layer_name
               featureFields {
-                ISD_Nbhd
+                CT_ID_10
               }
               geometry {
                 type
@@ -106,8 +106,16 @@ const IndexPage = () => {
                   maxY
                 }
               }
-      }
-    }
+            }
+          }
+        }
+        allAcs1216TractCsv {
+          edges {
+            node {
+              CT_ID_10
+              Commute1030
+            }
+          }
         }
       }
     `)
@@ -149,6 +157,33 @@ const IndexPage = () => {
      layer.bindPopup("Popup!")
   }
 
+  // TODO -- make this more graqhql style (join??)
+  function commuteFromID(id) {
+    //console.log(data.allAcs1216TractCsv)
+    var item = data.allAcs1216TractCsv.edges.find((item) => item.CT_ID_10 === id)
+    console.log(item)
+    if (item.node.Commute1030) {
+      return item.node.Commute1030
+    }
+    else {
+      console.log(item)
+      return 0
+    }
+  }
+
+  function commuteToColor(commute) {
+    commute = commute.node.Commute1030
+    console.log(commute)
+    if (commute < 0.40) {
+      return 'red'
+    }
+    else if (commute >= 0.40 && commute < 0.60) {
+      return 'yellow'
+    }
+    else {
+      return 'green'
+    }
+  }
 
   return (
     <Layout pageName="home">
@@ -159,7 +194,7 @@ const IndexPage = () => {
         <Map {...mapSettings}>
           <Marker ref={markerRef} position={CENTER} />
           {data.allGeoFeature.edges.map((edge) => 
-          <GeoJSON data={edge.node.geometry} attribution="BARI" color={neighborhoodMapping[edge.node.featureFields.ISD_Nbhd]} onEachFeature={(feature, layer) => layer.bindPopup(edge.node.featureFields.ISD_Nbhd)}/>)}
+          <GeoJSON data={edge.node.geometry} attribution="BARI" color={commuteToColor(data.allAcs1216TractCsv.edges.find((i) => i.node.CT_ID_10 == edge.node.featureFields.CT_ID_10))} onEachFeature={(feature, layer) => layer.bindPopup(edge.node.featureFields.CT_ID_10)}/>)}
           
         </Map>
         
