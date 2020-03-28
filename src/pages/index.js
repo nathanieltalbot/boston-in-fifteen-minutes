@@ -1,3 +1,4 @@
+
 import React, { useRef } from 'react';
 import Helmet from 'react-helmet';
 import L from 'leaflet';
@@ -8,7 +9,7 @@ import { promiseToFlyTo, getCurrentLocation } from 'lib/map';
 import Layout from 'components/Layout';
 import { Container } from 'react-bootstrap';
 import Map from 'components/Map';
-
+import Neighborhoods from 'components/Neighborhoods'
 import gatsby_astronaut from 'assets/images/gatsby-astronaut.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useStaticQuery, graphql } from 'gatsby'
@@ -39,6 +40,11 @@ const popupContentGatsby = `
   </div>
 `;
 
+
+/**
+  * randColorStyle
+  * @description A function that returns a random hex color as a string
+  */
 function randColorStyle(){
   return {color: '#'+Math.floor(Math.random()*16777215).toString(16)}
 }
@@ -144,46 +150,8 @@ const IndexPage = () => {
     "Mattapan": '#006400'
 
   }
-  function colorToNeighborhood(neighborhood) {
-    if (neighborhoodMapping[neighborhood]) {
-      return {color: neighborhoodMapping[neighborhood]}
-    }
-    else {
-      return {color: '#000000'}
-    }
-  }
 
-  function onEachFeature(feature, layer) {
-     layer.bindPopup("Popup!")
-  }
 
-  // TODO -- make this more graqhql style (join??)
-  function commuteFromID(id) {
-    //console.log(data.allAcs1216TractCsv)
-    var item = data.allAcs1216TractCsv.edges.find((item) => item.CT_ID_10 === id)
-    console.log(item)
-    if (item.node.Commute1030) {
-      return item.node.Commute1030
-    }
-    else {
-      console.log(item)
-      return 0
-    }
-  }
-
-  function commuteToColor(commute) {
-    commute = commute.node.Commute1030
-    console.log(commute)
-    if (commute < 0.40) {
-      return 'red'
-    }
-    else if (commute >= 0.40 && commute < 0.60) {
-      return 'yellow'
-    }
-    else {
-      return 'green'
-    }
-  }
 
   return (
     <Layout pageName="home">
@@ -191,15 +159,13 @@ const IndexPage = () => {
         <title>Home Page</title>
       </Helmet>
       <Container style={{'display': 'flex', 'align-items':'center'}}>
-        <Map {...mapSettings}>
+        <Map style={{'display': 'flex', 'align-self':'center'}}{...mapSettings}>
           <Marker ref={markerRef} position={CENTER} />
-          {data.allGeoFeature.edges.map((edge) => 
-          <GeoJSON data={edge.node.geometry} attribution="BARI" color={commuteToColor(data.allAcs1216TractCsv.edges.find((i) => i.node.CT_ID_10 == edge.node.featureFields.CT_ID_10))} onEachFeature={(feature, layer) => layer.bindPopup(edge.node.featureFields.CT_ID_10)}/>)}
+          <Neighborhoods data={data} />
           
         </Map>
         
       </Container>
-      
     </Layout>
   );
 };
