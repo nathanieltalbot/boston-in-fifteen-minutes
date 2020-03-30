@@ -4,7 +4,6 @@ import Helmet from 'react-helmet';
 
 import Layout from 'components/Layout';
 import { Container } from 'react-bootstrap';
-import MapData from 'components/MapData'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { useStaticQuery, graphql } from 'gatsby'
@@ -40,7 +39,7 @@ const IndexPage = () => {
       <Helmet>
         <title>Home Page</title>
       </Helmet>
-      <Container style={{'display': 'flex', 'align-items':'center', 'flex-direction':'column'}}>
+      <Container style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
       <MDXRenderer>{data.mdx.body}</MDXRenderer>
       
       </Container>

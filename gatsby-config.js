@@ -19,12 +19,21 @@ module.exports = {
         path: `${__dirname}/src/content`
       }
     },
+    
     {
      resolve: `gatsby-source-geo`,
       options: {
-        path: `./src/assets/shapes/Tracts_Boston BARI.shp`,
+        path: `./src/assets/shapes/BARI/Tracts_Boston BARI.shp`,
       }
     },
+    
+    {
+      resolve: `gatsby-source-geo`,
+      options: {
+        path: `./src/assets/shapes/MBTA/MBTA_NODE.shp`,
+      }
+    },
+    
     {
       resolve: `gatsby-source-filesystem`,
       options: {

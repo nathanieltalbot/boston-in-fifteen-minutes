@@ -6374,9 +6374,9 @@ gatsby-source-filesystem@^2.1.55:
     valid-url "^1.0.9"
     xstate "^4.8.0"
 
-"gatsby-source-geo@https://github.com/nathanieltalbot/gatsby-source-geo":
+"gatsby-source-geo@https://github.com/nathanieltalbot/gatsby-source-geo#separate-sources":
   version "0.3.0"
-  resolved "https://github.com/nathanieltalbot/gatsby-source-geo#b2ac369df68ca106bf55a23e3bcdb8f6ee6bc5da"
+  resolved "https://github.com/nathanieltalbot/gatsby-source-geo#6f520bbdcbb37354c8b3ae01d30f971c61531556"
   dependencies:
     gdal "^0.9.8"
 

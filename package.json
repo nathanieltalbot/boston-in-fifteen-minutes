@@ -19,7 +19,7 @@
     "gatsby-plugin-resolve-src": "^2.0.0",
     "gatsby-plugin-sass": "^2.1.30",
     "gatsby-source-filesystem": "^2.1.55",
-    "gatsby-source-geo": "https://github.com/nathanieltalbot/gatsby-source-geo",
+    "gatsby-source-geo": "https://github.com/nathanieltalbot/gatsby-source-geo#separate-sources",
     "gatsby-transformer-csv": "^2.2.1",
     "gdal": "^0.9.9",
     "leaflet": "^1.6.0",

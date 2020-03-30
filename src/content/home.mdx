@@ -3,6 +3,8 @@ title: Home
 ---
 
 import LoadedMap from '../components/LoadedMap'
+import { mapSettings, neighborhoodColors } from '../data/settings.js'
+import LoadedNeighborhoods from '../components/LoadedNeighborhoods'
 
 # Boston, In Fifteen Minutes
 
@@ -14,4 +16,6 @@ Shown on the map below are the census tracts of Boston, which will be the basis 
 
 Currently, the census tracts are color-coded by neighborhood.
 
-<LoadedMap dataSet={"neighborhoods"}/>
+<LoadedMap {...mapSettings}>
+    <LoadedNeighborhoods dataSet={neighborhoodColors}/>
+</LoadedMap>

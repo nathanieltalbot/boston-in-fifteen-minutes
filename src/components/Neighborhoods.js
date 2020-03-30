@@ -25,26 +25,18 @@ const PopupContent = (props) => {
 //Abstracting the GeoJSON configuration to it's own component
 //TODO -- abstract the data that is being displayed by these polygons -- pass in a data type with CT_ID and color?
 export default function Neighborhoods(props) {
+    
     const data = useStaticQuery(graphql`
         query ShapeQuery {
-            allGeoFeature {
-                edges {
-                    node {
-                        layer_name
-                        featureFields {
-                            CT_ID_10
-                            ISD_Nbhd
-                        }
-                        geometry {
-                            type
-                            coordinates
-                            envelope {
-                                minX
-                                minY
-                                maxX
-                                maxY
-                            }
-                        }
+            tractsBostonBariLayer(name: {eq: "Tracts_Boston BARI"}) {
+                features {
+                    geometry {
+                        type
+                        coordinates
+                    }
+                    featureFields {
+                        ISD_Nbhd
+                        CT_ID_10
                     }
                 }
             }
@@ -52,11 +44,11 @@ export default function Neighborhoods(props) {
         `)
     const dataSet = props.dataSet
     return(
-        data.allGeoFeature.edges.map((edge) => 
-          <GeoJSON data={edge.node.geometry}
-          key={edge.node.featureFields.CT_ID_10}
+        data.tractsBostonBariLayer.features.map((node) => 
+          <GeoJSON data={node.geometry}
+          key={node.featureFields.CT_ID_10}
           attribution="BARI" 
-          color={props.dataSet[edge.node.featureFields.CT_ID_10]} 
-          onEachFeature={(feature, layer) => layer.bindPopup(ReactDOMServer.renderToString(<PopupContent ct_id={edge.node.featureFields.CT_ID_10}/>))}/>)
+          color={props.dataSet[node.featureFields.ISD_Nbhd]} 
+          onEachFeature={(feature, layer) => layer.bindPopup(ReactDOMServer.renderToString(<PopupContent ct_id={node.featureFields.CT_ID_10}/>))}/>)
     )
 }

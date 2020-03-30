@@ -5,6 +5,7 @@
     - For example, displaying MBTA stops. There will be an `<MBTAStops />` component that will:
         - Run a GraphQL query to get the locations of every stop
         - Appropriately use other Leaflet components to display it (in this case, likely a Marker)
+- To display this with MDX (if this is not too time-intensive), MDX should use map components with appropriate overlays
 
 ## Questions to Answer
 - How are we figuring out what census tracts have more access to `x`?
