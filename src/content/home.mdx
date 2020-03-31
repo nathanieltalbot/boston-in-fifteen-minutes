@@ -5,6 +5,7 @@ title: Home
 import LoadedMap from '../components/LoadedMap'
 import { mapSettings } from '../data/settings.js'
 import LoadedNeighborhoods from '../components/LoadedNeighborhoods'
+import LoadedMBTA from '../components/LoadedMBTA'
 
 # Boston, In Fifteen Minutes
 
@@ -18,4 +19,9 @@ Currently, the census tracts are color-coded by neighborhood.
 
 <LoadedMap {...mapSettings}>
     <LoadedNeighborhoods />
+</LoadedMap>
+
+## MBTA 
+<LoadedMap {...mapSettings}>
+    <LoadedMBTA />
 </LoadedMap>

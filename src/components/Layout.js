@@ -21,7 +21,7 @@ const Layout = ({ children, pageName }) => {
       </Helmet>
       <div className="wrapper">
         <Header />
-        <Container style={{'display': 'flex', 'align-items':'center'}}>{ children }</Container>
+        { children }
         <Footer />
       </div>
     </>

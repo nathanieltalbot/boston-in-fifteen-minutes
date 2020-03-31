@@ -27,6 +27,7 @@
     "node-pre-gyp": "^0.14.0",
     "node-sass": "^4.13.1",
     "path": "^0.12.7",
+    "proj4": "^2.6.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.0",

@@ -103,10 +103,11 @@ export default function Neighborhoods(props) {
           attribution="BARI" 
           color={neighborhoodColors[node.featureFields.ISD_Nbhd]} 
           onEachFeature={(feature, layer) => layer.bindPopup(ReactDOMServer.renderToString(
-          <PopupContent 
-            nbhd={node.featureFields.ISD_Nbhd} 
-            ct_id={node.featureFields.CT_ID_10}
-            census={data.allAcs1216TractCsv.nodes.find((n) => n.CT_ID_10 == node.featureFields.CT_ID_10)}
-          />))}/>)
+            <PopupContent 
+                nbhd={node.featureFields.ISD_Nbhd} 
+                ct_id={node.featureFields.CT_ID_10}
+                census={data.allAcs1216TractCsv.nodes.find((n) => n.CT_ID_10 == node.featureFields.CT_ID_10)}
+            />
+            ))}/>)
     )
 }
