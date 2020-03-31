@@ -2,6 +2,8 @@ import React from 'react'
 import { GeoJSON } from 'react-leaflet';
 import { useStaticQuery, graphql } from 'gatsby'
 import ReactDOMServer from "react-dom/server";
+import { neighborhoodColors } from '../data/settings.js'
+import { Container, Row, Col } from 'react-bootstrap'
 
 function commuteToColor(commute) {
     commute = commute.node.Commute1030
@@ -18,7 +20,50 @@ function commuteToColor(commute) {
 
 // Simple example of rendering a React component to a popup
 const PopupContent = (props) => {
-    return(<p>{props.ct_id} 👋</p>)
+
+    // Currency formatting example courtesy of: https://stackoverflow.com/questions/149055/how-to-format-numbers-as-currency-string
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+
+    return(
+        <Container>
+            <Row>
+            <b>Neighborhood: </b>{props.nbhd}
+            </Row>
+            <Row>
+            <b>Census Tract ID: </b>{props.ct_id}
+            </Row>
+            <Row>
+            <b>Population: </b>{props.census.TotalPop}
+            </Row>
+            <Row>
+                {//Checks to ensure that MedHouseIncome is defined
+                props.census.MedHouseIncome != "NA" &&
+                    <>
+                        <b>Median Household Income: </b>{formatter.format(props.census.MedHouseIncome)}
+                    </>
+                }
+            </Row>
+            <Row>
+                {//Checks to ensure that MedHouseIncome is defined
+                props.census.MedHomeVal != "NA" &&
+                    <>
+                        <b>Median Home Value: </b>{formatter.format(props.census.MedHomeVal)}
+                    </>
+                }
+            </Row>
+            <Row>
+                {//Checks to ensure that MedHouseIncome is defined
+                props.census.MedGrossRent != "NA" &&
+                    <>
+                        <b>Median Gross Rent: </b>{formatter.format(props.census.MedGrossRent)}
+                    </>
+                }
+            </Row>
+        </Container>
+    )
 }
 
 
@@ -40,15 +85,28 @@ export default function Neighborhoods(props) {
                     }
                 }
             }
+            allAcs1216TractCsv {
+                nodes {
+                    CT_ID_10
+                    TotalPop
+                    MedHouseIncome
+                    MedHomeVal
+                    MedGrossRent
+                }
+            }
         }
         `)
-    const dataSet = props.dataSet
     return(
         data.tractsBostonBariLayer.features.map((node) => 
           <GeoJSON data={node.geometry}
           key={node.featureFields.CT_ID_10}
           attribution="BARI" 
-          color={props.dataSet[node.featureFields.ISD_Nbhd]} 
-          onEachFeature={(feature, layer) => layer.bindPopup(ReactDOMServer.renderToString(<PopupContent ct_id={node.featureFields.CT_ID_10}/>))}/>)
+          color={neighborhoodColors[node.featureFields.ISD_Nbhd]} 
+          onEachFeature={(feature, layer) => layer.bindPopup(ReactDOMServer.renderToString(
+          <PopupContent 
+            nbhd={node.featureFields.ISD_Nbhd} 
+            ct_id={node.featureFields.CT_ID_10}
+            census={data.allAcs1216TractCsv.nodes.find((n) => n.CT_ID_10 == node.featureFields.CT_ID_10)}
+          />))}/>)
     )
 }
