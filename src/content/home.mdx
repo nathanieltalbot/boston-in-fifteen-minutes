@@ -2,10 +2,8 @@
 title: Home
 ---
 
-import LoadedMap from '../components/LoadedMap'
 import { mapSettings } from '../data/settings.js'
-import LoadedNeighborhoods from '../components/LoadedNeighborhoods'
-import LoadedMBTA from '../components/LoadedMBTA'
+import LoadableComponent from '../components/LoadableComponent'
 
 # Boston, In Fifteen Minutes
 
@@ -64,9 +62,9 @@ Our basic unit of analysis for the city will be census tracts, one unit of magni
 outlined, color-coded by neighborhood name. Each census tract has some basic information available, sourced from 2010 Census Data 
 [compilated by the Boston Area Research Initiative (BARI)](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SQ6BT4).
 
-<LoadedMap {...mapSettings}>
-    <LoadedNeighborhoods />
-</LoadedMap>
+<LoadableComponent component="Map" {...mapSettings}>
+    <LoadableComponent component="Neighborhoods" />
+</LoadableComponent>
 
 ***
 
@@ -75,6 +73,6 @@ outlined, color-coded by neighborhood name. Each census tract has some basic inf
 The content below is for testing, and hasn't been integrated into the write-up yet.
 
 ## MBTA 
-<LoadedMap {...mapSettings}>
-    <LoadedMBTA />
-</LoadedMap>
+<LoadableComponent component="Map" {...mapSettings}>
+    <LoadableComponent component="MBTA" />
+</LoadableComponent>
