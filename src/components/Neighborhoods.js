@@ -4,6 +4,9 @@ import { useStaticQuery, graphql } from 'gatsby'
 import ReactDOMServer from "react-dom/server";
 import { neighborhoodColors } from '../data/settings.js'
 import { Container, Row, Col } from 'react-bootstrap'
+import Control from 'react-leaflet-control'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircle } from '@fortawesome/free-solid-svg-icons'
 
 function commuteToColor(commute) {
     commute = commute.node.Commute1030
@@ -96,8 +99,10 @@ export default function Neighborhoods(props) {
             }
         }
         `)
+    //TODO -- implement 
     return(
-        data.tractsBostonBariLayer.features.map((node) => 
+        <>
+        {data.tractsBostonBariLayer.features.map((node) => 
           <GeoJSON data={node.geometry}
           key={node.featureFields.CT_ID_10}
           attribution="BARI" 
@@ -108,6 +113,19 @@ export default function Neighborhoods(props) {
                 ct_id={node.featureFields.CT_ID_10}
                 census={data.allAcs1216TractCsv.nodes.find((n) => n.CT_ID_10 == node.featureFields.CT_ID_10)}
             />
-            ))}/>)
+            ))}/>
+            )}
+        <Control position='bottomleft' style={{backgroundColor: 'white'}}>
+            <Container fluid style={{backgroundColor:"rgba(255,255,255,.75)"}}>
+                {Object.keys(neighborhoodColors).map((nbhd) =>
+                <Row>
+                    <Col xl>{nbhd}</Col>
+                        <Col xs><FontAwesomeIcon icon={faCircle} color={neighborhoodColors[nbhd]} /></Col>
+                </Row>
+                )}
+                
+            </Container>
+        </Control>
+        </>
     )
 }

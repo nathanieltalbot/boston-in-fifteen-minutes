@@ -20,9 +20,7 @@ export default function MBTA(props) {
             }
         }
         `)
-    // TODO -- https://github.com/proj4js/proj4js fix this -- use proj4js for coordinates. Likely in UTM format.
     let stop_re = /(Red Line|Blue Line|Orange Line|Green Line|Silver Line)/
-    let color_re = /(Red|Blue|Orange|Green|Silver)/
     return(
         data.allStopsCsv.nodes.map((node) => 
         <Marker key={node.id} position={[node.stop_lat, node.stop_lon]} title={node.stop_name}>
