@@ -32,6 +32,7 @@
     "path": "^0.12.7",
     "proj4": "^2.6.0",
     "prop-types": "^15.7.2",
+    "rainbowvis.js": "^1.0.1",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.0",

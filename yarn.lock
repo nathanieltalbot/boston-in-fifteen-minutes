@@ -12273,6 +12273,11 @@ railroad-diagrams@^1.0.0:
   resolved "https://registry.yarnpkg.com/railroad-diagrams/-/railroad-diagrams-1.0.0.tgz#eb7e6267548ddedfb899c1b90e57374559cddb7e"
   integrity sha1-635iZ1SN3t+4mcG5Dlc3RVnN234=
 
+rainbowvis.js@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/rainbowvis.js/-/rainbowvis.js-1.0.1.tgz#e8998fb97161b02557748c7da097962b0d6e3e00"
+  integrity sha1-6JmPuXFhsCVXdIx9oJeWKw1uPgA=
+
 randexp@0.4.6:
   version "0.4.6"
   resolved "https://registry.yarnpkg.com/randexp/-/randexp-0.4.6.tgz#e986ad5e5e31dae13ddd6f7b3019aa7c87f60ca3"
