@@ -10,34 +10,6 @@ const PopupContent = (props) => {
     return(<><b>Average Commute Time: </b> {props.commuteTime < 0 ? "Unknown" : props.commuteTime + " min"}</>)
 }
 
-function commuteTimeMidpoint(census) {
-    // Using Midpoint Coding: https://www.displayr.com/how-to-calculate-an-average-value-from-categorical-data/
-    // < 10 -- 5
-    // 10-30 -- 20
-    // 30-60 -- 45
-    // 60-90 -- 75
-    // > 90 -- 105
-    census = replaceNA(census)
-    if (census.TotalPop > 0) {
-        var midpointMatrix = {
-            CommuteLess10: 5,
-            Commute1030: 20,
-            Commute3060: 45,
-            Commute6090: 75,
-            CommuteOver90: 105
-        }
-        //Object.keys(census).map((key) => census[key] === "NA"? census[key] = 0)
-        const reducer = (accumulator, key) => accumulator + midpointMatrix[key] * (census[key] * census["TotalPop"]);
-        let sum = Object.keys(midpointMatrix).reduce(reducer, 0)
-        return (sum / parseFloat(census.TotalPop))
-    }
-    else {
-        return -1
-    }
-    
-
-}
-
 export default function CommuteTimes(props) {
      const data = useStaticQuery( graphql`
         query CommuteQuery {
@@ -57,11 +29,9 @@ export default function CommuteTimes(props) {
                 nodes {
                     TotalPop
                     CT_ID_10
-                    Commute1030
-                    Commute3060
-                    Commute6090
-                    CommuteLess10
-                    CommuteOver90
+                    fields {
+                        averageCommute
+                    }
                 }
             }
         }
@@ -73,7 +43,7 @@ export default function CommuteTimes(props) {
 
     return(<>{ data.tractsBostonBariLayer.features.map(( node ) => {
         let census_data = data.allAcs1216TractCsv.nodes.find(( n ) => n.CT_ID_10 == node.featureFields.CT_ID_10 )
-        let avgCommute = Math.round(commuteTimeMidpoint(census_data))
+        let avgCommute = Math.round(node.fields.averageCommute)
         return (<GeoJSON data={node.geometry}
           key={node.featureFields.CT_ID_10}
           attribution="BARI" 
