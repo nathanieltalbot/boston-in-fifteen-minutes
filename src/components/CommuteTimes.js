@@ -18,7 +18,6 @@ function commuteTimeMidpoint(census) {
     // 60-90 -- 75
     // > 90 -- 105
     census = replaceNA(census)
-    console.log(census)
     if (census.TotalPop > 0) {
         var midpointMatrix = {
             CommuteLess10: 5,
@@ -29,9 +28,7 @@ function commuteTimeMidpoint(census) {
         }
         //Object.keys(census).map((key) => census[key] === "NA"? census[key] = 0)
         const reducer = (accumulator, key) => accumulator + midpointMatrix[key] * (census[key] * census["TotalPop"]);
-        console.log(census)
         let sum = Object.keys(midpointMatrix).reduce(reducer, 0)
-        console.log(sum)
         return (sum / parseFloat(census.TotalPop))
     }
     else {
