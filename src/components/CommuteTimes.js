@@ -69,7 +69,7 @@ export default function CommuteTimes(props) {
 
     var gradient = new Rainbow();
     gradient.setSpectrum('green', 'yellow', 'red')
-    gradient.setNumberRange(0, 75)
+    gradient.setNumberRange(10, 75)
 
     return(<>{ data.tractsBostonBariLayer.features.map(( node ) => {
         let census_data = data.allAcs1216TractCsv.nodes.find(( n ) => n.CT_ID_10 == node.featureFields.CT_ID_10 )

@@ -68,6 +68,22 @@ outlined, color-coded by neighborhood name. Each census tract has some basic inf
 
 ## Commute Times and Workplace Access
 
+The first category we'll look at is probably the most critical factor in social well-being in a neighborhood -- commute times. 
+[Studies have shown](https://www.nytimes.com/2019/01/21/upshot/stuck-and-stressed-the-health-costs-of-traffic.html) that commute times are often directly
+correlated with an individual's mental health -- higher commute times, especially when traveling in traffic by vehicle, correlate with higher emotional stress levels.
+
+The simplest way to get a clear picture of the commute of the average individual in an area of the city is by using self-reported census data. Here, we're using commute 
+time data again from [BARI](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SQ6BT4). 
+
+*Data Analysis Background*
+The census data is offered to us per census tract as a proportion, broken down into five categories of commute time: 
+*less than 10 minutes*, *10-30 minutes*, *30-60 minutes*, *60-90 minutes*, *more than 90 minutes*. Using 
+[midpoint coding](https://www.displayr.com/how-to-calculate-an-average-value-from-categorical-data/), we find the midpoint of each of these categories (treating the midpoint of > 90 min as 105 min)
+-- so, respectively, 5, 20, 45, 75, and 105 minutes for each category. We then sum `category_proportion * total_population * midpoint` for each category, and divide by the total total_population
+to find the average time.
+
+Commute times are currently displayed on a sliding color scale -- green is <= 10 minutes, red is >= 75 minutes, and everything in between is an average color value.
+
 <LoadableComponent component="Map" {...mapSettings}>
     <LoadableComponent component="CommuteTimes" />
 </LoadableComponent>
