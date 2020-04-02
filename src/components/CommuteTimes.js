@@ -43,7 +43,7 @@ export default function CommuteTimes(props) {
 
     return(<>{ data.tractsBostonBariLayer.features.map(( node ) => {
         let census_data = data.allAcs1216TractCsv.nodes.find(( n ) => n.CT_ID_10 == node.featureFields.CT_ID_10 )
-        let avgCommute = Math.round(node.fields.averageCommute)
+        let avgCommute = Math.round(census_data.fields.averageCommute)
         return (<GeoJSON data={node.geometry}
           key={node.featureFields.CT_ID_10}
           attribution="BARI" 
