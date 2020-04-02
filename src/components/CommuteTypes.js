@@ -32,13 +32,11 @@ function commuteTypeToColor(census) {
     census = replaceNA(census)
     //const types = ["ByAuto", "ByBike", "ByPubTrans", "ByWalk"]
     Object.keys(colorMap).forEach(element => {
-        console.log(census[element])
         if (parseFloat(census[element]) > max) {
             max = census[element]
             largest = element
         }
     });
-    console.log(largest)
     if (largest.length > 0) {
         return colorMap[largest]
     }

@@ -41,7 +41,7 @@ export default function CommuteTimes(props) {
     gradient.setSpectrum('green', 'yellow', 'red')
     gradient.setNumberRange(10, 75)
 
-    return(<>{ data.tractsBostonBariLayer.features.map(( node ) => {
+    return(<>{data.tractsBostonBariLayer.features.map(( node ) => {
         let census_data = data.allAcs1216TractCsv.nodes.find(( n ) => n.CT_ID_10 == node.featureFields.CT_ID_10 )
         let avgCommute = Math.round(census_data.fields.averageCommute)
         return (<GeoJSON data={node.geometry}

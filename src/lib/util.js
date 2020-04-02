@@ -30,11 +30,11 @@ export function CommuteTimeMidpoint(census) {
     census = replaceNA(census)
     if (census.TotalPop > 0) {
         const reducer = (accumulator, key) => accumulator + midpointMatrix[key] * (census[key] * census["TotalPop"]);
-        let sum = Object.keys(midpointMatrix).reduce(reducer, 0)
+        let sum = Object.keys(midpointMatrix).reduce(reducer, null)
         return (sum / parseFloat(census.TotalPop))
     }
     else {
-        return -1
+        return null
     }
     
 
