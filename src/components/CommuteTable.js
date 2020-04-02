@@ -15,7 +15,8 @@ function fuckingInnerJoin(data) {
             "averageCommute": census.fields.averageCommute,
             "ByAuto": census.ByAuto,
             "ByBike": census.ByBike,
-            "ByPubTrans": census.ByPubTrans})
+            "ByPubTrans": census.ByPubTrans,
+            "ByWalk": census.ByWalk})
         return acc
     }
     return(data.tractsBostonBariLayer.features.reduce(reducer, []))
@@ -47,6 +48,7 @@ export default function CommuteTable(props) {
                 ByAuto
                 ByBike
                 ByPubTrans
+                ByWalk
             }
         }
     }`);
@@ -67,6 +69,9 @@ export default function CommuteTable(props) {
                         <th>Commute Time</th>
                         <th>% Commuting by Public Transit</th>
                         <th>% Commuting by Car</th>
+                        <th>% Commuting by Walking</th>
+                        <th>% Commuting by Bike</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -87,7 +92,12 @@ export default function CommuteTable(props) {
                         <td>
                             {(parseFloat(node.ByAuto) * 100).toFixed(2)}%
                         </td>
-
+                        <td>
+                            {(parseFloat(node.ByWalk) * 100).toFixed(2)}%
+                        </td>
+                        <td>
+                            {(parseFloat(node.ByBike) * 100).toFixed(2)}%
+                        </td>
                     </tr>
                     )
                     }
