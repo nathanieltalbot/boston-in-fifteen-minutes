@@ -78,6 +78,7 @@ The simplest way to get a clear picture of the commute of the average individual
 time data again from [BARI](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SQ6BT4). 
 
 *Data Analysis Background*
+
 The census data is offered to us per census tract as a proportion, broken down into five categories of commute time: 
 *less than 10 minutes*, *10-30 minutes*, *30-60 minutes*, *60-90 minutes*, *more than 90 minutes*. Using 
 [midpoint coding](https://www.displayr.com/how-to-calculate-an-average-value-from-categorical-data/), we find the midpoint of each of these categories (treating the midpoint of > 90 min as 105 min)
@@ -88,6 +89,16 @@ Commute times are currently displayed on a sliding color scale -- green is <= 10
 
 <LoadableComponent component="Map" {...mapSettings}>
     <LoadableComponent component="CommuteTimes" />
+</LoadableComponent>
+
+***
+
+However, commute time isn't the only metric we should measure -- also important is commute type, data that BARI also offers us. Rather than use a red-yellow-green scale for this, we'll
+mark each commute type with it's own color. Here, commuting by car is maroon, and commuting by public transit is orange. Walking and biking are also available as data points, but no 
+neighborhood saw primarily and walking or biking commuters
+
+<LoadableComponent component="Map" {...mapSettings}>
+    <LoadableComponent component="CommuteTypes" />
 </LoadableComponent>
 
 ***
