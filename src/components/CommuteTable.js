@@ -6,7 +6,7 @@ var Rainbow = require('rainbowvis.js');
 function fuckingInnerJoin(data) {
     var reducer = (acc, curr) => {
         ///console.log(data.allAcs1216TractCsv)
-        console.log(curr)
+        //console.log(curr)
         let census = data.allAcs1216TractCsv.nodes.find(( n ) => n.CT_ID_10 == curr.featureFields.CT_ID_10)
         acc.push({
             "CT_ID_10": curr.featureFields.CT_ID_10, 
@@ -55,7 +55,7 @@ export default function CommuteTable(props) {
     const joined_data = fuckingInnerJoin(data)
     // This sorting syntax to exclude null values from https://stackoverflow.com/questions/29829205/sort-an-array-so-that-null-values-always-come-last
     joined_data.sort((a, b) => (a.averageCommute===null)-(b.averageCommute===null) || +(a.averageCommute>b.averageCommute)||-(a.averageCommute<b.averageCommute))
-    console.log(joined_data)
+    //console.log(joined_data)
     var gradient = new Rainbow();
     gradient.setSpectrum('green', 'yellow', 'red')
     gradient.setNumberRange(10, 75)
