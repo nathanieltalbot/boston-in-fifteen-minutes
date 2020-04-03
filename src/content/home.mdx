@@ -102,11 +102,18 @@ mark each commute type with it's own color.
 
 ***
 
-So how does this fit into the "15-minute city" model? From a glance, it seems like...not well, something that is somewhat predictable if you've ever experience Boston during rush hour. 
-What's especially interesting to note is that even the "downtown" neighborhoods that one might expect to have short commute times (for example, Back Bay) still report commutes of 25-30 minutes?
-A good commute time, by most people's standards, but almost double the "15-minute" metric we're looking at. Let's look at the best-performing neighborhoods more specifically.
+So how does this fit into the "15-minute city" model? From a glance, it seems not well. Nobody averages a commute above  
+What's especially interesting to note is that even the "downtown" neighborhoods that one might expect to have short commute times (for example, Back Bay) still report commutes of 25-30 minutes -- 
+a short commute, by most people's standards, but almost double the "15-minute" metric we're looking at. Let's look at the best-performing neighborhoods more specifically.
 
 <LoadableComponent component="CommuteTable" />
+
+From looking at this, it is clear that the neighborhoods that score the best do so with primarily walking commutes. Additionally, they're all close to the downtown center -- 
+clustered primarily in Fenway/Kenmore and in the neighborhoods of Government Center, Chinatown, the West End, and the Financial District, typically considered the center of businesses
+and workplaces in the town, but not in Dorchester, West Roxbury, or Hyde Park/Roslindale. The Allston/Brighton tract, additionally, is right along the section of Commonwealth Avenue that is home to Boston University. 
+
+<!--- TODO -- better mapping of commute times correlated with type -->
+
 
 ## Here be Dragons
 
@@ -115,4 +122,9 @@ The content below is for testing, and hasn't been integrated into the write-up y
 ## MBTA 
 <LoadableComponent component="Map" {...mapSettings}>
     <LoadableComponent component="MBTA" />
+</LoadableComponent>
+
+## Hospitals
+<LoadableComponent component="Map" {...mapSettings}>
+    <LoadableComponent component="Hospitals" />
 </LoadableComponent>

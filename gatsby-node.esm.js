@@ -7,7 +7,6 @@ exports.onCreateNode = ({ node, actions }) => {
   //console.log(node.internal.type === "HospitalsCsv")
   //console.log(node.id)
   if (node.internal.type === "Acs1216TractCsv") {
-      console.log(node.id)
       createNodeField({
           node,
           name: 'averageCommute',

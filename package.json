@@ -31,6 +31,7 @@
     "node-pre-gyp": "^0.14.0",
     "node-sass": "^4.13.1",
     "path": "^0.12.7",
+    "point-in-polygon": "^1.0.1",
     "proj4": "^2.6.0",
     "prop-types": "^15.7.2",
     "rainbowvis.js": "^1.0.1",

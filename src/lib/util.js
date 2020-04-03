@@ -39,3 +39,7 @@ export function CommuteTimeMidpoint(census) {
     
 
 }
+
+export function MeterToMile(meters) {
+    return meters * 0.000621371192;
+}
