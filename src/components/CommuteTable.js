@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import { Container, Table } from 'react-bootstrap'
 var Rainbow = require('rainbowvis.js');
 
-function fuckingInnerJoin(data) {
+function joinData(data) {
     var reducer = (acc, curr) => {
         ///console.log(data.allAcs1216TractCsv)
         //console.log(curr)
@@ -52,7 +52,7 @@ export default function CommuteTable(props) {
             }
         }
     }`);
-    const joined_data = fuckingInnerJoin(data)
+    const joined_data = joinData(data)
     // This sorting syntax to exclude null values from https://stackoverflow.com/questions/29829205/sort-an-array-so-that-null-values-always-come-last
     joined_data.sort((a, b) => (a.averageCommute===null)-(b.averageCommute===null) || +(a.averageCommute>b.averageCommute)||-(a.averageCommute<b.averageCommute))
     //console.log(joined_data)
