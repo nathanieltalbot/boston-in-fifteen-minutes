@@ -114,6 +114,31 @@ and workplaces in the town, but not in Dorchester, West Roxbury, or Hyde Park/Ro
 
 <!--- TODO -- better mapping of commute times correlated with type -->
 
+## Education
+
+The Massachusetts public school system is continually [ranked #1](https://www.usnews.com/news/best-states/rankings/education) among all US states, and Boston has one of 
+the [highest college student populations](https://www.citylab.com/equity/2016/09/americas-biggest-college-towns/498755/) in the country. How do these rankings match up with their accessibility
+to residents? To do this, we'll break education down into three categories:
+
+- Public Libraries
+- K-12 Schools 
+    - Private Schools
+    - Public Schools/Charter Schools
+- Colleges/Universities
+
+### Public Libraries
+
+Boston's [data portal](https://data.boston.gov/) offers us a data set with the location of each library in the Boston Public Library system. This map uses this data to show the
+distance from the given census tract to the closest library. For the sake of simplicity, the distance is calculated as the crow-flies distance from the center of the tract (rather than
+the distance if one was traveling along roads). Again, a green to red scale was used here -- green representing a distance of `<= 0.8 miles` (as discissed above), and red indicating a distance 
+of `>= 3 miles`.
+
+<LoadableComponent component="Map" {...mapSettings}>
+    <LoadableComponent component="Libraries" />
+</LoadableComponent>
+
+As is clear from the map coloring -- save for a few tracts which lie towards the edges of the city, Boston generally has readily available library access, which slides in quite neatly to our 
+"15-minute" metric.
 
 ## Here be Dragons
 
