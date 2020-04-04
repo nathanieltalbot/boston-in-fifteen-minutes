@@ -15,7 +15,7 @@ exports.onCreateNode = ({ node, actions }) => {
       })
   }
   //Converting UTM into lat/long
-  else if (node.internal.type === "PublicLibrariesCsv") {
+  else if (node.internal.type === "PublicLibrariesCsv" || node.internal.type === "PublicSchoolsCsv") {
       var coords = proj4(UTM_STRING, WGS_STRING,[parseFloat(node.X), parseFloat(node.Y)])
       createNodeField({
         node,

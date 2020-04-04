@@ -9,6 +9,7 @@ import LoadableComponent from '../components/LoadableComponent'
 
 *An analysis of accessibility in Boston.*
 
+*Presented by Nat Talbot, fourth-year student, Khoury College of Sciences*
 ***
 
 ## Background
@@ -139,6 +140,27 @@ of `>= 3 miles`.
 
 As is clear from the map coloring -- save for a few tracts which lie towards the edges of the city, Boston generally has readily available library access, which slides in quite neatly to our 
 "15-minute" metric.
+
+### Public Schools
+
+It's unfortunately hard to get a perfect image of public school access in Boston due to the complex network of school choice, an subject that the  Boston Area Research Initiative (BARI) 
+[has studied](https://cssh.northeastern.edu/bostonarearesearchinitiative/projects/school-choice-assignment/). 
+
+To start, we can take a high-level look at the Boston Public Schools [Student Assignment Policy](https://www.bostonpublicschools.org/assignment) as it is stated on their website. The Boston Public School system offers
+families a choice of where to send their students for grades K-8 from a list of schools tailored to their home address, on the following criteria: 
+"every school within a one-mile radius of their home plus, as needed, nearby high-quality schools based on BPS's School Quality Framework (SQF) system of measurement".
+
+Per this policy, every household should be able to choose a K-8 school that is within 15-20 minutes of their household (0.8-1 mile, roughly). High schools remain, per the website, citywide options.
+Working off of this, we can look at how many K-8 schools every census tract has access to in a one-mile radius. We are using again data from the [Boston Data Portal](https://data.boston.gov/) on public schools
+in the city. The dataset lists the type of school in regards to what grades it offers -- "ES" (elementary school), "MS" (middle school), "HS" (high school), "K-8", "6/7-12", "Special", "K-12". For this 
+mapping, given that this policy is for K-8 schools only, we have excluded any schools that exclusively offer the high school grades (9-12) as well as special education schools, as these are not offered as options
+to every household.
+
+Per the BPS website: "Every family has a choice of at least six schools; most will have between 10 and 14 choices." With that metric in mind, we color the map so with red at 1 school and green at 10 schools in a one-mile radius.
+
+<LoadableComponent component="Map" {...mapSettings}>
+    <LoadableComponent component="PublicSchools" />
+</LoadableComponent>
 
 ## Here be Dragons
 
