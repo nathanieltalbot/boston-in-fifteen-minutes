@@ -12,13 +12,13 @@ const PopupContent = (props) => {
     return(<><b>Closest Hospital: </b> {props.hospital.name}, {props.hospital.distance.toFixed(2)} miles away</>)
 }
 
-export default function Hospitals(props) {
+export default function HealthCenters(props) {
     const data = useStaticQuery(graphql`
-        query HospitalQuery{
-            ogrGeoJsonLayer(name: {eq: "OGRGeoJSON"}) {
+        query HealthCenterQuery{
+            chcsPtLayer(name: {eq: "CHCS_PT"}) {
                 features {
                     featureFields {
-                        name
+                        SITE_NAME
                     }
                     geometry {
                         coordinates
@@ -46,9 +46,10 @@ export default function Hospitals(props) {
     //console.log(data)
     data.tractsBostonBariLayer.features.map((feature) => {
         const nbhd_point = L.latLng(feature.geometry.centroid.y, feature.geometry.centroid.x);
-        const hospital_list = data.ogrGeoJsonLayer.features.map((hospital) => {
-            //const coords = utmToLatLng(hospital.geometry.coordinates)
-            return({"name": hospital.featureFields.name, "distance": MeterToMile(nbhd_point.distanceTo(L.latLng(hospital.geometry.coordinates[1], hospital.geometry.coordinates[0])))})
+        const hospital_list = data.chcsPtLayer.features.map((hospital) => {
+            const coords = utmToLatLng(hospital.geometry.coordinates)
+            console.log(coords)
+            return({"name": hospital.featureFields.SITE_NAME, "distance": MeterToMile(nbhd_point.distanceTo(L.latLng(coords)))})
         })
         hospital_list.sort((a,b) => a.distance - b.distance)
         feature.closest_hospital = hospital_list[0]

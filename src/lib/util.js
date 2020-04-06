@@ -48,8 +48,7 @@ export function MeterToMile(meters) {
     return meters * 0.000621371192;
 }
 
-export function utmToLatLong(latLng) {
+export function utmToLatLng(latLng) {
     var coords = proj4(UTM_STRING, WGS_STRING,[parseFloat(latLng[0]), parseFloat(latLng[1])])
-    console.log(coords)
     return [coords[1], coords[0]]
 }

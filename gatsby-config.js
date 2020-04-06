@@ -12,6 +12,10 @@ module.exports = {
     `gatsby-plugin-mdx`,
     `gatsby-transformer-csv`,
 
+    /*{
+        resolve: `gatsby-source-places-api`,
+        options: { query: "grocery stores or supermarkets"},
+    },*/
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -33,7 +37,21 @@ module.exports = {
         path: `./src/assets/shapes/MBTA/MBTA_NODE.shp`,
       }
     },
-    
+
+    {
+    resolve: `gatsby-source-geo`,
+      options: {
+        path: `./src/assets/shapes/community_health/CHCS_PT.shp`,
+      }
+    },
+
+    {
+    resolve: `gatsby-source-geo`,
+      options: {
+        path: `./src/assets/shapes/acute_care.geojson`,
+      }
+    },
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
