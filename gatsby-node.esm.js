@@ -2,8 +2,6 @@ import {CommuteTimeMidpoint} from './src/lib/util'
 import proj4 from 'proj4'
 import { UTM_STRING_2, WGS_STRING } from './src/lib/vars'
 
-import { Client } from "@googlemaps/google-maps-services-js";
-
 exports.onCreateNode = async ({ node, actions }) => {
   const { createNode, createNodeField } = actions
   // Transform the new node here and create a new node or
