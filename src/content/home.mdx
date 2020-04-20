@@ -19,12 +19,11 @@ The inspiration for this comes from a proposal by Anne Hidalgo, the incumbent Ma
 The proposal, called *Ville du Quart d’Heure*, or the *Fifteen-Minute City*, here reported on in great detail by 
 [CityLab](https://www.citylab.com/environment/2020/02/paris-election-anne-hidalgo-city-planning-walks-stores-parks/606325/), is an urban design plan
 with the intent of designing a city in which all of the basic needs of life for its residents can be satisfied within a fifteen-minute radius, by foot or by bicycle.
-Such a design not only promotes sustainability in the era of climate change, but also enhances the well-being of its residents.
+Such a design not only promotes sustainability in the era of climate change, but also enhances the well-being of its residents.[^1]
 
 Paris, as it turns out, is not the only city that has presented such a sweeping urban design plan. As *CityLab* reports, Barcelona already has 
-pedestrian-centric [Superblocks](https://www.citylab.com/transportation/2018/08/inside-a-pedestrian-first-superblock/566864/). London is promoting it's 
-[Every One Every Day](https://www.weareeveryone.org/) urban design plan. And in America, [Portland, Oregon](https://www.portlandonline.com/portlandplan/index.cfm?c=52256&a=288098)
-is promoting a plan of 20-minute neighborhoods for 90% of it's residents.
+Superblocks -- "40-acre, tic-tac-toe sections of the street grid that the city has transformed into pedestrian-first environments"[^2]. London is promoting a it's  
+Every One Every Day urban design plan.[^3] And in America, Portland, Oregon is promoting a plan of 20-minute neighborhoods for 90% of it's residents.[^4]
 
 But what would such a plan look like for Boston? [The Boston Planning & Development Agency](http://www.bostonplans.org/) has not laid out any specific 15- or 20-minute city plan, 
 although, in the [Imagine Boston 2020](https://www.boston.gov/news/mayor-walsh-announces-planning-initiatives-downtown-east-boston-mattapan-newmarket-allston) planning initiative,
@@ -32,7 +31,7 @@ there are specific references to improving the mixed-use downtown and expanding 
 city design, let's first define the specific parameters of a fulfilling daily life for a citizen of Boston.
 
 As quoted in the [CityLab Article](https://www.citylab.com/environment/2020/02/paris-election-anne-hidalgo-city-planning-walks-stores-parks/606325/)--Carlos Moreno, a professor at Paris-Sorbonne University, 
-defines the basic needs as such: “There are six things that make an urbanite happy” he told Liberation. “Dwelling in dignity, working in proper conditions, [being able to gain] provisions, well-being, education and leisure."
+defines the basic needs as such: “There are six things that make an urbanite happy” he told Liberation. “Dwelling in dignity, working in proper conditions, [being able to gain] provisions, well-being, education and leisure."[^1]
 
 **We can define these into several categories, and expected data points, for each:**
 
@@ -69,7 +68,7 @@ outlined, color-coded by neighborhood name. Each census tract has some basic inf
 
 ***
 
-## Commute Times and Workplace Access
+## Work -- Commute Times and Workplace Access
 
 The first category we'll look at is probably the most critical factor in social well-being in a neighborhood -- commute times. 
 [Studies have shown](https://www.nytimes.com/2019/01/21/upshot/stuck-and-stressed-the-health-costs-of-traffic.html) that commute times are often directly
@@ -115,6 +114,43 @@ and workplaces in the town, but not in Dorchester, West Roxbury, or Hyde Park/Ro
 
 <!--- TODO -- better mapping of commute times correlated with type -->
 
+## Provisions
+
+The next major component of our analysis concerns how accessible grocery stores, specialty food markets, and pharmacies are to each area of Boston. We're using data of grocery store locations
+from the Metropolitan Area Planning Council, found [here](https://data-metroboston.opendata.arcgis.com/datasets/a5d09c31d88b4c96a21fc124115da0e3_0). This data has been broken down into several categories
+of establishment -- Supermarkets/Other Grocery stores, Convenience Stores, Pharmacies & Drug Stores, Fruit & Vegetable Markets, Fish & Seafood Markets, Other Specialty Food Stores, Meat Markets,
+Farmers Markets, Winter Markets, and Warehouse Clubs. We'll start by taking a look at just the supermarkets, which should provide a wide range of options. A disclaimer: this data is from 2016,
+so there may be markets that have changed names since, or have closed since. 
+
+<LoadableComponent component="Map" {...mapSettings}>
+    <LoadableComponent component="GroceryStores" />
+</LoadableComponent>
+
+***
+
+As it turns out, basically all of the neighborhoods of Boston do fit our criteria in regards to local grocery stores -- however, we can break this down into more specific categories if we choose.
+Let's now look at specialty markets -- Fish & Seafood Markets, Fruit & Vegetable Markets, and Meat Markets to get a sense of what the access breakdown is.
+
+<LoadableComponent component="Map" {...mapSettings}>
+    <LoadableComponent component="SpecialtyFood" />
+</LoadableComponent>
+
+***
+
+The access breakdown is similar -- almost all areas in Boston have relatively good access to specialty food stores. 
+
+### Pharmacies
+
+We'll now turn to locations of pharmacies in Boston. 
+
+<LoadableComponent component="Map" {...mapSettings}>
+    <LoadableComponent component="Pharmacies" />
+</LoadableComponent>
+
+***
+
+Thanks to the prevalence of chain pharmacies across Boston -- chiefy, CVS and Walgreens, most neighborhoods do quite well on this metric. 
+
 ## Education
 
 The Massachusetts public school system is continually [ranked #1](https://www.usnews.com/news/best-states/rankings/education) among all US states, and Boston has one of 
@@ -146,9 +182,9 @@ As is clear from the map coloring -- save for a few tracts which lie towards the
 It's unfortunately hard to get a perfect image of public school access in Boston due to the complex network of school choice, an subject that the  Boston Area Research Initiative (BARI) 
 [has studied](https://cssh.northeastern.edu/bostonarearesearchinitiative/projects/school-choice-assignment/). 
 
-To start, we can take a high-level look at the Boston Public Schools [Student Assignment Policy](https://www.bostonpublicschools.org/assignment) as it is stated on their website. The Boston Public School system offers
+To start, we can take a high-level look at the Boston Public Schools Student Assignment Policy as it is stated on their website. The Boston Public School system offers
 families a choice of where to send their students for grades K-8 from a list of schools tailored to their home address, on the following criteria: 
-"every school within a one-mile radius of their home plus, as needed, nearby high-quality schools based on BPS's School Quality Framework (SQF) system of measurement".
+"every school within a one-mile radius of their home plus, as needed, nearby high-quality schools based on BPS's School Quality Framework (SQF) system of measurement".[^5]
 
 Per this policy, every household should be able to choose a K-8 school that is within 15-20 minutes of their household (0.8-1 mile, roughly). High schools remain, per the website, citywide options.
 Working off of this, we can look at how many K-8 schools every census tract has access to in a one-mile radius. We are using again data from the [Boston Data Portal](https://data.boston.gov/) on public schools
@@ -179,29 +215,20 @@ on the list. Similar to the library analyis, we're going to take a look at what 
 What tracts are in "college neighborhoods" and which ones aren't? Again, it's clear that the downtown tracs are very dense with college students, while tracts 
 further out in the city, and especially in neighborhoods like Jamaica Plain and Roslindale, are much less walkable.
 
-
 <!--TODO -- bias this off of population? --->
 
 ## Leisure
 
 Finally, we'll take a look at another critical component of well-being in a neighborhood -- leisure. We're going to start by mapping all of the public parks in 
-## Here be Dragons
-
-The content below is for testing, and hasn't been integrated into the write-up yet.
-
-## MBTA 
-<LoadableComponent component="Map" {...mapSettings}>
-    <LoadableComponent component="MBTA" />
-</LoadableComponent>
 
 ## Hospitals and Medical Care
 
-<LoadableComponent component="Map" {...mapSettings}>
-    <LoadableComponent component="Hospitals" />
-</LoadableComponent>
-
 ***
 
-<LoadableComponent component="Map" {...mapSettings}>
-    <LoadableComponent component="HealthCenters" />
-</LoadableComponent>
+
+
+[^1]: O’Sullivan, Feargus. “It’s Time for the ‘15-Minute City.’” CityLab. Accessed April 19, 2020. https://www.citylab.com/environment/2020/02/paris-election-anne-hidalgo-city-planning-walks-stores-parks/606325/.
+[^2]: Bliss, Laura. “Inside a Pedestrian-First ‘Superblock.’” CityLab. Accessed April 19, 2020. https://www.citylab.com/transportation/2018/08/inside-a-pedestrian-first-superblock/566864/.
+[^3]: “Every One. Every Day.” Accessed April 19, 2020. https://www.weareeveryone.org/.
+[^4]: “20-Minute Neighborhoods.” Accessed April 19, 2020. https://www.portlandonline.com/portlandplan/index.cfm?c=52256&a=288098.
+[^5]: “BPS Welcome Services / Student Assignment Policy.” Accessed April 20, 2020. http%3A%2F%2Fwww.bostonpublicschools.org%2Fsite%2FDefault.aspx%3FPageID%3D6544.
