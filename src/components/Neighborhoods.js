@@ -8,19 +8,6 @@ import Control from 'react-leaflet-control'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
 
-function commuteToColor(commute) {
-    commute = commute.node.Commute1030
-    if (commute < 0.40) {
-        return '#F34213'
-    }
-    else if (commute >= 0.40 && commute < 0.60) {
-        return '#FDE74C'
-    }
-    else {
-        return '#3A5743'
-    }
-}
-
 // Simple example of rendering a React component to a popup
 const PopupContent = (props) => {
 

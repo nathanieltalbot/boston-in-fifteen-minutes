@@ -50,9 +50,7 @@ defines the basic needs as such: “There are six things that make an urbanite h
     - Urgent care centers
     - Primary care physicians
 - **Leisure**
-    - Public parks
-    - Bars and restaurants
-    - Theatres, cinemas, live entertainment, misc.
+    - Public parks, open space, trees
 
 ***
 
@@ -271,6 +269,37 @@ including medical, social and/or mental health services, to anyone in need regar
 
 Community health centers have a better distribution overall than hospitals, and the further-out neighborhoods that are further from acute-care hospitals do slightly better
 than in the previous map. Still, there are a number of areas with poor access -- Hyde Park especially, where the closest health center is almost three miles away.
+
+***
+
+## Leisure
+
+The final point of our analysis is leisure, and in general, quality of life within the neighborhoods of Boston. The Boston Data Portal offers us data of all the public spaces within Boston. 
+
+<LoadableComponent component="Map" {...mapSettings}>
+    <LoadableComponent component="Parks" />
+</LoadableComponent>
+
+As it turns out, basically every neighborhood in Boston has very good access to open space. Let's look more specifically at the "greenness" of a certain tract. 
+To do that, we'll use the Trees dataset from the Boston Data Portal. Here, we've parsed the tree data from the city to determine how many trees are in each tract. On the map, green is > 2000 trees, and brown is < 100 trees. 
+The tract with the most trees had over 6000 trees, the tract with the least had a little over 50.
+
+<LoadableComponent component="Map" {...mapSettings}>
+    <LoadableComponent component="Trees" />
+</LoadableComponent>
+
+## Conclusions
+
+To conclude, let's look at a heatmap of average household income from the 2010 census data in Boston.
+
+## Tools Used
+
+This website was built with ReactJS and Gatsby. I chose Gatsby 
+
+
+
+
+
 
 
 [^1]: O’Sullivan, Feargus. “It’s Time for the ‘15-Minute City.’” CityLab. Accessed April 19, 2020. https://www.citylab.com/environment/2020/02/paris-election-anne-hidalgo-city-planning-walks-stores-parks/606325/.

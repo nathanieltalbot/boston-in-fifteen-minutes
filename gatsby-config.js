@@ -11,6 +11,7 @@ module.exports = {
     'gatsby-plugin-react-leaflet',
     `gatsby-plugin-mdx`,
     `gatsby-transformer-csv`,
+    `gatsby-transformer-json`,
 
     /*{
         resolve: `gatsby-source-places-api`,
@@ -30,13 +31,13 @@ module.exports = {
         path: `./src/assets/shapes/BARI/Tracts_Boston BARI.shp`,
       }
     },
-    /*
+    
     {
       resolve: `gatsby-source-geo`,
       options: {
-        path: `./src/assets/shapes/MBTA/MBTA_NODE.shp`,
+        path: `./src/assets/shapes/Open_Space.geojson`,
       }
-    },*/
+    },
 
     {
     resolve: `gatsby-source-geo`,
@@ -59,6 +60,5 @@ module.exports = {
         path: `${__dirname}/src/assets/data`,
       },
     },
-    
   ],
 };

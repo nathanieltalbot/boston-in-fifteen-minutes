@@ -9,11 +9,13 @@ exports.onCreateNode = async ({ node, actions }) => {
   const new_field = []
 
   if (node.internal.type === "Acs1216TractCsv") {
+    //console.log(trees)
       createNodeField({
           node,
           name: 'averageCommute',
           value: CommuteTimeMidpoint(node)
       })
+
   }
   //Converting UTM into lat/long
   else if (node.internal.type === "PublicLibrariesCsv" || node.internal.type === "PublicSchoolsCsv") {

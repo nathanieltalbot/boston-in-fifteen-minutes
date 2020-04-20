@@ -26,6 +26,7 @@
     "gatsby-source-filesystem": "^2.1.55",
     "gatsby-source-geo": "https://github.com/nathanieltalbot/gatsby-source-geo#separate-sources",
     "gatsby-transformer-csv": "^2.2.1",
+    "gatsby-transformer-json": "^2.3.3",
     "gdal": "^0.9.9",
     "leaflet": "^1.6.0",
     "node-gyp": "^6.1.0",
