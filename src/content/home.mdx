@@ -124,7 +124,7 @@ mark each commute type with it's own color.
 
 ***
 
-So how does this fit into the "15-minute city" model? From a glance, it seems not well. Nobody averages a commute above  
+So how does this fit into the "15-minute city" model? From a glance, it seems not well. Almost all of the commutes are in the 30-45 minute range, with some even longer.
 What's especially interesting to note is that even the "downtown" neighborhoods that one might expect to have short commute times (for example, Back Bay) still report commutes of 25-30 minutes -- 
 a short commute, by most people's standards, but almost double the "15-minute" metric we're looking at. Let's look at the best-performing neighborhoods more specifically.
 
@@ -189,7 +189,7 @@ to residents? To do this, we'll break education down into three categories:
 
 Boston's data portal offers us a data set with the location of each library in the Boston Public Library system.[^12] This map uses this data to show the
 distance from the given census tract to the closest library. For the sake of simplicity, the distance is calculated as the crow-flies distance from the center of the tract (rather than
-the distance if one was traveling along roads). Again, a green to red scale was used here -- green representing a distance of `<= 0.8 miles` (as discussed above), and red indicating a distance 
+the distance if one was traveling along roads). Again, a green to red scale was used here -- green representing a distance of `<= 0.75 miles` (as discussed above), and red indicating a distance 
 of `>= 3 miles`.
 
 <LoadableComponent component="Map" {...mapSettings}>
@@ -221,14 +221,14 @@ Per the BPS website: "Every family has a choice of at least six schools; most wi
 </LoadableComponent>
 
 What does the map show us? Chiefly, that there are a number of census tracts with few schools that meet the 1 mile radius criteria. The areas that do are mostly clustered in Roxbury and Dorchester,
-areas that do worse in other areas of our analysis, such as commute time. Similarly, the neighborhoods that performed the best for commute times and types -- the Back Bay/Financial District/Government Center
-areas. 
+areas that do worse in other areas of our analysis, such as commute time. On the other hand, the neighborhoods that performed the best for commute times and types -- the Back Bay/Financial District/Government Center
+areas, do much worse on this metric. 
 
 <!---TODO -- analysis of age breakdown of neighborhoods--->
 
 Finally, let's look at the higher education distribution in the city. We're again using data from the Boston Data Portal, a dataset on the locations of colleges and universities
-in the city.[^15] We have again omitted parts of this data for clarity -- several universities listed by the city are since listed as closed, and there were several double locations of other universities
-on the list. Similar to the library analyis, we're going to take a look at what tracts have a university in walking distance (calculating the distance off the centroid of the tract). 
+in the city.[^15] We have again omitted parts of this data for clarity -- several universities in the dataset have since been listed as closed online, and there were several double locations of other universities
+in the data. Similarly to the library analyis, we're going to take a look at what tracts have a university in walking distance (calculating the distance off the centroid of the tract). 
 
 <LoadableComponent component="Map" {...mapSettings}>
     <LoadableComponent component="Colleges" />
@@ -245,7 +245,6 @@ We'll now turn to the well-being metrics in a city -- chiefly, hospitals, health
 data sources for acute care hospitals within the city, which 
 "contain a majority of medical-surgical, pediatric, obstetric, and maternity beds, as defined by the Massachusetts Department of Public Health (DPH)".[^16]
 
-
 ### Hospitals
 
 <LoadableComponent component="Map" {...mapSettings}>
@@ -254,7 +253,7 @@ data sources for acute care hospitals within the city, which
 
 ***
 
-We see a similar distribution of hospitals within the city -- the downtown neighborhoods, and predictably, those in the Longwood Medical area, 
+We see a similar distribution of hospitals within the city -- the downtown neighborhoods, and predictably, those in the Longwood Medical Area, 
 all have readily accessible hospitals in a walking radius. The neighborhoods further out in the city -- West Roxbury, Hyde Park, East Boston,
 have further to travel for medical care. It is also worth noting that in emergency situations, this may not be the most ideal metric, as one will presumably
 not be walking to medical care, but since acute care hospitals provide a large range of non-emergency services, it is still a valid metric to study.
@@ -291,6 +290,9 @@ The tract with the most trees had over 6000 trees, the tract with the least had 
 <LoadableComponent component="Map" {...mapSettings}>
     <LoadableComponent component="Trees" />
 </LoadableComponent>
+
+The neighborhoods that do the best are predictably ones covered mostly by public parks -- Franklin Park and Arnold Arboretum for example. While the downtown areas perform better on other metrics,
+they do quite poorly here, due to the density of buildings in these areas.
 
 ## Conclusions
 
