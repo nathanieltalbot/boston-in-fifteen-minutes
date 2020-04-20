@@ -30,25 +30,25 @@ module.exports = {
         path: `./src/assets/shapes/BARI/Tracts_Boston BARI.shp`,
       }
     },
-    
+    /*
     {
       resolve: `gatsby-source-geo`,
       options: {
         path: `./src/assets/shapes/MBTA/MBTA_NODE.shp`,
       }
-    },
+    },*/
 
     {
     resolve: `gatsby-source-geo`,
       options: {
-        path: `./src/assets/shapes/community_health/CHCS_PT.shp`,
+        path: `./src/assets/shapes/CHCSPT.geojson`,
       }
     },
 
     {
     resolve: `gatsby-source-geo`,
       options: {
-        path: `./src/assets/shapes/acute_care.geojson`,
+        path: `./src/assets/shapes/acuteCare.geojson`,
       }
     },
 
