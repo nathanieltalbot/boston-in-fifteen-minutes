@@ -5,12 +5,6 @@ title: Home
 import { mapSettings } from '../data/settings.js'
 import LoadableComponent from '../components/LoadableComponent'
 
-# Boston, In Fifteen Minutes
-
-*An analysis of accessibility in Boston.*
-
-*Presented by Nat Talbot, fourth-year student, Khoury College of Sciences*
-***
 
 ## Background
 
@@ -78,13 +72,21 @@ developed by Peter Furth of the Northeasten College of Engineering, that could b
 
 Our basic unit of analysis for the city will be census tracts, one unit of magnitude below neighborhoods. Shown below is each census tract
 outlined, color-coded by neighborhood name. Each census tract has some basic information available, sourced from 2010 Census Data 
-[compilated by the Boston Area Research Initiative (BARI)](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SQ6BT4).
+[compiled by the Boston Area Research Initiative (BARI)](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SQ6BT4).[^6]
 
 <LoadableComponent component="Map" {...mapSettings}>
     <LoadableComponent component="Neighborhoods" />
 </LoadableComponent>
 
 ***
+
+## The Fifteen-Minute Mapping Tools
+
+The purpose of this project was to create a tool where we could essentially "heatmap" on a tract-by-tract basis the availability of different services on a fifteen-minute radius.
+This has a broad range of potential users. For example, this analysis and visualization could be used by city planners when determing where increasing density of housing is more
+efficient, or determining how to rezone portions of a city that are in underserved areas of the city. Potential renters or home buyers could use this tool to make decisions about
+which parts of the city are most ideal to live in. These visualizations offer a number of potential avenues of further research as well -- do underserved areas of the city typically
+have different racial breakdowns? Different median household incomes? With this line of analysis, questions can potentially be answered about equity in the city.
 
 ## Work -- Commute Times and Workplace Access
 
@@ -93,14 +95,14 @@ The first category we'll look at is probably the most critical factor in social 
 correlated with an individual's mental health -- higher commute times, especially when traveling in traffic by vehicle, correlate with higher emotional stress levels.
 
 The simplest way to get a clear picture of the commute of the average individual in an area of the city is by using self-reported census data. Here, we're using commute 
-time data again from [BARI](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SQ6BT4). 
+time data again from [BARI](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SQ6BT4).[^6]
 
 *Data Analysis Background*
 
 The census data is offered to us per census tract as a proportion, broken down into five categories of commute time: 
 *less than 10 minutes*, *10-30 minutes*, *30-60 minutes*, *60-90 minutes*, *more than 90 minutes*. Using 
-[midpoint coding](https://www.displayr.com/how-to-calculate-an-average-value-from-categorical-data/), we find the midpoint of each of these categories (treating the midpoint of > 90 min as 105 min)
--- so, respectively, 5, 20, 45, 75, and 105 minutes for each category. We then sum `category_proportion * total_population * midpoint` for each category, and divide by the total total_population
+midpoint coding,, we find the midpoint of each of these categories (treating the midpoint of > 90 min as 105 min)
+-- so, respectively, 5, 20, 45, 75, and 105 minutes for each category.[^7] We then sum `category_proportion * total_population * midpoint` for each category, and divide by the total total_population
 to find the average time.
 
 Commute times are currently displayed on a sliding color scale -- green is <= 10 minutes, red is >= 75 minutes, and everything in between is an average color value.
@@ -135,7 +137,7 @@ and workplaces in the town, but not in Dorchester, West Roxbury, or Hyde Park/Ro
 ## Provisions
 
 The next major component of our analysis concerns how accessible grocery stores, specialty food markets, and pharmacies are to each area of Boston. We're using data of grocery store locations
-from the Metropolitan Area Planning Council, found [here](https://data-metroboston.opendata.arcgis.com/datasets/a5d09c31d88b4c96a21fc124115da0e3_0). This data has been broken down into several categories
+from the Metropolitan Area Planning Council[^8], found [here](https://data-metroboston.opendata.arcgis.com/datasets/a5d09c31d88b4c96a21fc124115da0e3_0). This data has been broken down into several categories
 of establishment -- Supermarkets/Other Grocery stores, Convenience Stores, Pharmacies & Drug Stores, Fruit & Vegetable Markets, Fish & Seafood Markets, Other Specialty Food Stores, Meat Markets,
 Farmers Markets, Winter Markets, and Warehouse Clubs. We'll start by taking a look at just the supermarkets, which should provide a wide range of options. A disclaimer: this data is from 2016,
 so there may be markets that have changed names since, or have closed since. 
@@ -171,7 +173,7 @@ Thanks to the prevalence of chain pharmacies across Boston -- chiefy, CVS and Wa
 
 ## Education
 
-The Massachusetts public school system is continually [ranked #1](https://www.usnews.com/news/best-states/rankings/education) among all US states, and Boston has one of 
+The Massachusetts public school system is continually ranked #1 among all US states, and Boston has one of 
 the [highest college student populations](https://www.citylab.com/equity/2016/09/americas-biggest-college-towns/498755/) in the country. How do these rankings match up with their accessibility
 to residents? To do this, we'll break education down into three categories:
 
@@ -183,7 +185,7 @@ to residents? To do this, we'll break education down into three categories:
 
 ### Public Libraries
 
-Boston's [data portal](https://data.boston.gov/) offers us a data set with the location of each library in the Boston Public Library system. This map uses this data to show the
+Boston's data portal offers us a data set with the location of each library in the Boston Public Library system.[^11] This map uses this data to show the
 distance from the given census tract to the closest library. For the sake of simplicity, the distance is calculated as the crow-flies distance from the center of the tract (rather than
 the distance if one was traveling along roads). Again, a green to red scale was used here -- green representing a distance of `<= 0.8 miles` (as discussed above), and red indicating a distance 
 of `>= 3 miles`.
@@ -202,11 +204,11 @@ It's unfortunately hard to get a perfect image of public school access in Boston
 
 To start, we can take a high-level look at the Boston Public Schools Student Assignment Policy as it is stated on their website. The Boston Public School system offers
 families a choice of where to send their students for grades K-8 from a list of schools tailored to their home address, on the following criteria: 
-"every school within a one-mile radius of their home plus, as needed, nearby high-quality schools based on BPS's School Quality Framework (SQF) system of measurement".[^6]
+"every school within a one-mile radius of their home plus, as needed, nearby high-quality schools based on BPS's School Quality Framework (SQF) system of measurement".[^12]
 
 Per this policy, every household should be able to choose a K-8 school that is within 15-20 minutes of their household (0.8-1 mile, roughly). High schools remain, per the website, citywide options.
-Working off of this, we can look at how many K-8 schools every census tract has access to in a one-mile radius. We are using again data from the [Boston Data Portal](https://data.boston.gov/) on public schools
-in the city. The dataset lists the type of school in regards to what grades it offers -- "ES" (elementary school), "MS" (middle school), "HS" (high school), "K-8", "6/7-12", "Special", "K-12". For this 
+Working off of this, we can look at how many K-8 schools every census tract has access to in a one-mile radius. We are using again data from the Boston Data Portal on public schools
+in the city.[^13] The dataset lists the type of school in regards to what grades it offers -- "ES" (elementary school), "MS" (middle school), "HS" (high school), "K-8", "6/7-12", "Special", "K-12". For this 
 mapping, given that this policy is for K-8 schools only, we have excluded any schools that exclusively offer the high school grades (9-12) as well as special education schools, as these are not offered as options
 to every household.
 
@@ -222,8 +224,8 @@ areas.
 
 <!---TODO -- analysis of age breakdown of neighborhoods--->
 
-Finally, let's look at the higher education distribution in the city. We're again using data from the Boston Data Portal, a [dataset on the locations of colleges and universities](https://data.boston.gov/dataset/colleges-and-universities)
-in the city. We have again omitted parts of this data for clarity -- several universities listed by the city are since listed as closed, and there were several double locations of other universities
+Finally, let's look at the higher education distribution in the city. We're again using data from the Boston Data Portal, a dataset on the locations of colleges and universities
+in the city.[^14] We have again omitted parts of this data for clarity -- several universities listed by the city are since listed as closed, and there were several double locations of other universities
 on the list. Similar to the library analyis, we're going to take a look at what tracts have a university in walking distance (calculating the distance off the centroid of the tract). 
 
 <LoadableComponent component="Map" {...mapSettings}>
@@ -239,7 +241,7 @@ further out in the city, and especially in neighborhoods like Jamaica Plain and 
 
 We'll now turn to the well-being metrics in a city -- chiefly, hospitals, health centers, and urgent care. We're using data from MassGIS
 data sources for acute care hospitals within the city, which 
-"contain a majority of medical-surgical, pediatric, obstetric, and maternity beds, as defined by the Massachusetts Department of Public Health (DPH)". [^7]
+"contain a majority of medical-surgical, pediatric, obstetric, and maternity beds, as defined by the Massachusetts Department of Public Health (DPH)".[^15]
 
 
 ### Hospitals
@@ -257,9 +259,9 @@ not be walking to medical care, but since acute care hospitals provide a large r
 
 ### Health Centers
 
-We'll turn next to MassGIS data on community health centers, which cover a broad range of other non-acute medical services. MassGIS uses the definition
+We'll turn next to MassGIS data on community health centers, which cover a broad range of other non-acute medical services.[^16] MassGIS uses the definition
 from the Massachusetts League of Community Health Centers, which "defines a community health center as a non-profit community-based organization that offers comprehensive primary and preventive health care, 
-including medical, social and/or mental health services, to anyone in need regardless of their medical status, ability to pay, culture or ethnicity"[^8]
+including medical, social and/or mental health services, to anyone in need regardless of their medical status, ability to pay, culture or ethnicity"[^16]
 
 <LoadableComponent component="Map" {...mapSettings}>
     <LoadableComponent component="HealthCenters" />
@@ -274,14 +276,14 @@ than in the previous map. Still, there are a number of areas with poor access --
 
 ## Leisure
 
-The final point of our analysis is leisure, and in general, quality of life within the neighborhoods of Boston. The Boston Data Portal offers us data of all the public spaces within Boston. 
+The final point of our analysis is leisure, and in general, quality of life within the neighborhoods of Boston. The Boston Data Portal offers us data of all the public spaces within Boston.[^17]
 
 <LoadableComponent component="Map" {...mapSettings}>
     <LoadableComponent component="Parks" />
 </LoadableComponent>
 
 As it turns out, basically every neighborhood in Boston has very good access to open space. Let's look more specifically at the "greenness" of a certain tract. 
-To do that, we'll use the Trees dataset from the Boston Data Portal. Here, we've parsed the tree data from the city to determine how many trees are in each tract. On the map, green is > 2000 trees, and brown is < 100 trees. 
+To do that, we'll use the Trees dataset from the Boston Data Portal.[^18] Here, we've parsed the tree data from the city to determine how many trees are in each tract. On the map, green is > 2000 trees, and brown is < 100 trees. 
 The tract with the most trees had over 6000 trees, the tract with the least had a little over 50.
 
 <LoadableComponent component="Map" {...mapSettings}>
@@ -290,23 +292,35 @@ The tract with the most trees had over 6000 trees, the tract with the least had 
 
 ## Conclusions
 
-To conclude, let's look at a heatmap of average household income from the 2010 census data in Boston.
+How does Boston measure up as far as fifteen-minute city proposals go? The answer is -- in some metrics, surprisingly well, in other metrics, quite poorly. 
 
-## Tools Used
+On these metrics, Boston did best when looking at specifically businesses -- most neighborhoods have relatively decent grocery store and pharmacy access, within
+walking distance. Educationally, it does better in some areas than others -- public libraries are very evenly distributed, but public schools are not -- more central areas of the city have more
+schools within walking distance than other areas. And as a city with some of the best hospitals in the country, there is a relatively even distribution of care across the city.
 
-This website was built with ReactJS and Gatsby. I chose Gatsby 
+Perhaps not surprisingly, for anyone who has commuted in the city, workplace access was the metric that failed the worst on the 15-minute test. Almost none of Boston's tracts met this criteria --
+with commute times hovering around 30-40+ minutes in most areas. And much of this commuting, especially with neighborhoods further from the downtown area of the city, was done by car.
 
-
-
-
-
-
+There is of course another project's worth of analysis on how these metrics can be improved. Certainly, none of these problems can be solved quickly. Boston's "Go Boston 2030" plan addresses a lot of
+these concerns, with plans to put all city residents within a 10-minute walk of bikeshare, transit, and carshare services, and plans to reduce commute times by 10%.[^19] These incremental efforts will
+undoubtedly make a large difference in city life for both residents and those who commute in, and will perhaps one day improve the metrics shown in this project. 
 
 [^1]: O’Sullivan, Feargus. “It’s Time for the ‘15-Minute City.’” CityLab. Accessed April 19, 2020. https://www.citylab.com/environment/2020/02/paris-election-anne-hidalgo-city-planning-walks-stores-parks/606325/.
 [^2]: Bliss, Laura. “Inside a Pedestrian-First ‘Superblock.’” CityLab. Accessed April 19, 2020. https://www.citylab.com/transportation/2018/08/inside-a-pedestrian-first-superblock/566864/.
 [^3]: “Every One. Every Day.” Accessed April 19, 2020. https://www.weareeveryone.org/.
 [^4]: “20-Minute Neighborhoods.” Accessed April 19, 2020. https://www.portlandonline.com/portlandplan/index.cfm?c=52256&a=288098.
 [^5]: Healthline. “Average Walking Speed: Pace, and Comparisons by Age and Sex.” Accessed April 20, 2020. https://www.healthline.com/health/exercise-fitness/average-walking-speed.
-[^6]: “BPS Welcome Services / Student Assignment Policy.” Accessed April 20, 2020. https://www.bostonpublicschools.org/assignment.
-[^7]: MassGIS Data: Acute Care Hospitals. “Massachusetts Document Repository.” Accessed April 20, 2020. https://docs.digital.mass.gov/dataset/massgis-data-acute-care-hospitals.
-[^8]: MassGIS Data: Community Health Centers. “Massachusetts Document Repository.” Accessed April 20, 2020. https://docs.digital.mass.gov/dataset/massgis-data-community-health-centers.
+[^6]: Boston Area Research Initiative, BARI. “2010 Census Geographies.” Harvard Dataverse, 2018. https://doi.org/10.7910/DVN/SQ6BT4.
+[^7]: Displayr. “How to Calculate an Average Value from Categorical Data,” June 18, 2018. https://www.displayr.com/how-to-calculate-an-average-value-from-categorical-data/.
+[^8]: “Food Retailers.” Metropolitan Area Planning Council Open Data, 2016. https://data-metroboston.opendata.arcgis.com/datasets/a5d09c31d88b4c96a21fc124115da0e3_0.
+[^9]: “These U.S. States Have the Best Education Systems.” Accessed April 20, 2020. https://www.usnews.com/news/best-states/rankings/education.
+[^10]: Florida, Richard. “America’s Biggest College Towns.” CityLab. Accessed April 20, 2020. http://www.citylab.com/housing/2016/09/americas-biggest-college-towns/498755/.
+[^11]: “Public Libraries.” Boston Maps, October 1, 2018. https://data.boston.gov/dataset/public-libraries.
+[^12]: “BPS Welcome Services / Student Assignment Policy.” Accessed April 20, 2020. https://www.bostonpublicschools.org/assignment.
+[^13]: “Public Schools.” Boston Maps, September 17, 2018. https://data.boston.gov/dataset/public-schools.
+[^14]: “Colleges and Universities.” Boston Maps, March 2, 2017. https://data.boston.gov/dataset/colleges-and-universities.
+[^15]: MassGIS Data: Acute Care Hospitals. “Massachusetts Document Repository.” Accessed April 20, 2020. https://docs.digital.mass.gov/dataset/massgis-data-acute-care-hospitals.
+[^16]: MassGIS Data: Community Health Centers. “Massachusetts Document Repository.” Accessed April 20, 2020. https://docs.digital.mass.gov/dataset/massgis-data-community-health-centers.
+[^17]: “Open Space.” Boston Maps, November 7, 2018. https://data.boston.gov/dataset/open-space.
+[^18]: “Trees.” Boston Maps, January 10, 2019. https://data.boston.gov/dataset/trees.
+[^19]: Boston.gov. “Go Boston 2030,” February 24, 2017. https://www.boston.gov/departments/transportation/go-boston-2030.
