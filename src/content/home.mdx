@@ -302,12 +302,25 @@ On these metrics, Boston did best when looking at specifically businesses -- mos
 walking distance. Educationally, it does better in some areas than others -- public libraries are very evenly distributed, but public schools are not -- more central areas of the city have more
 schools within walking distance than other areas. And as a city with some of the best hospitals in the country, there is a relatively even distribution of care across the city.
 
-Perhaps not surprisingly, for anyone who has commuted in the city, workplace access was the metric that failed the worst on the 15-minute test. Almost none of Boston's tracts met this criteria --
+Perhaps not surprisingly, for anyone who has commuted in the city, workplace access was the metric that fared the worst on the 15-minute test. Almost none of Boston's tracts met this criteria --
 with commute times hovering around 30-40+ minutes in most areas. And much of this commuting, especially with neighborhoods further from the downtown area of the city, was done by car.
 
 There is of course another project's worth of analysis on how these metrics can be improved. Certainly, none of these problems can be solved quickly. Boston's "Go Boston 2030" plan addresses a lot of
 these concerns, with plans to put all city residents within a 10-minute walk of bikeshare, transit, and carshare services, and plans to reduce commute times by 10%.[^20] These incremental efforts will
 undoubtedly make a large difference in city life for both residents and those who commute in, and will perhaps one day improve the metrics shown in this project. 
+
+## Attributions
+This project was made possible with a number of different open-source libraries and tools, offered generously under the MIT license by their developers.
+
+The site was built with [GatsbyJS](https://www.gatsbyjs.org/), a static site generator, with [ReactJS](https://reactjs.org/) handling the frontend and [GraphQL](https://graphql.org/) handling data queries.
+
+This repository is built off of the [Gatsby Leaflet Starter](https://github.com/colbyfayock/gatsby-starter-leaflet) offered under the MIT license by Colby Fayock.
+
+All mapping was done with the [LeafletJS](https://leafletjs.com/) library, offered as React components by [React-Leaflet](https://react-leaflet.js.org/). All base maps are provided by [OpenStreetMap](https://www.openstreetmap.org/).
+
+A number of smaller open-source packages were invaluable for the visualizations. They include [Rainbowvis.js](https://github.com/anomal/RainbowVis-JS) which provided the color gradient for the mapping,
+[Gatsby-Source-Geo](https://github.com/andrewl/gatsby-source-geo), a Gatsby plugin that handles GeoJSON and Shapefile data, and [proj4js](http://proj4js.org/) 
+which converted GIS northings and eastings into latitude and longitude.
 
 [^1]: O’Sullivan, Feargus. “It’s Time for the ‘15-Minute City.’” CityLab. Accessed April 19, 2020. https://www.citylab.com/environment/2020/02/paris-election-anne-hidalgo-city-planning-walks-stores-parks/606325/.
 [^2]: Bliss, Laura. “Inside a Pedestrian-First ‘Superblock.’” CityLab. Accessed April 19, 2020. https://www.citylab.com/transportation/2018/08/inside-a-pedestrian-first-superblock/566864/.
