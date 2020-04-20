@@ -217,14 +217,40 @@ further out in the city, and especially in neighborhoods like Jamaica Plain and 
 
 <!--TODO -- bias this off of population? --->
 
-## Leisure
+## Well-Being
 
-Finally, we'll take a look at another critical component of well-being in a neighborhood -- leisure. We're going to start by mapping all of the public parks in 
+We'll now turn to the well-being metrics in a city -- chiefly, hospitals, health centers, and urgent care. We're using data from MassGIS
+data sources for acute care hospitals within the city, which 
+"contain a majority of medical-surgical, pediatric, obstetric, and maternity beds, as defined by the Massachusetts Department of Public Health (DPH)". [^6]
 
-## Hospitals and Medical Care
+
+### Hospitals
+
+<LoadableComponent component="Map" {...mapSettings}>
+    <LoadableComponent component="Hospitals" />
+</LoadableComponent>
 
 ***
 
+We see a similar distribution of hospitals within the city -- the downtown neighborhoods, and predictably, those in the Longwood Medical area, 
+all have readily accessible hospitals in a walking radius. The neighborhoods further out in the city -- West Roxbury, Hyde Park, East Boston,
+have further to travel for medical care. It is also worth noting that in emergency situations, this may not be the most ideal metric, as one will presumably
+not be walking to medical care, but since acute care hospitals provide a large range of non-emergency services, it is still a valid metric to study.
+
+### Health Centers
+
+We'll turn next to MassGIS data on community health centers, which cover a broad range of other non-acute medical services. MassGIS uses the definition
+from the Massachusetts League of Community Health Centers, which "defines a community health center as a non-profit community-based organization that offers comprehensive primary and preventive health care, 
+including medical, social and/or mental health services, to anyone in need regardless of their medical status, ability to pay, culture or ethnicity"[^7]
+
+<LoadableComponent component="Map" {...mapSettings}>
+    <LoadableComponent component="HealthCenters" />
+</LoadableComponent>
+
+***
+
+Community health centers have a better distribution overall than hospitals, and the further-out neighborhoods that are further from acute-care hospitals do slightly better
+than in the previous map. Still, there are a number of areas with poor access -- Hyde Park especially, where the closest health center is almost three miles away.
 
 
 [^1]: O’Sullivan, Feargus. “It’s Time for the ‘15-Minute City.’” CityLab. Accessed April 19, 2020. https://www.citylab.com/environment/2020/02/paris-election-anne-hidalgo-city-planning-walks-stores-parks/606325/.
@@ -232,3 +258,5 @@ Finally, we'll take a look at another critical component of well-being in a neig
 [^3]: “Every One. Every Day.” Accessed April 19, 2020. https://www.weareeveryone.org/.
 [^4]: “20-Minute Neighborhoods.” Accessed April 19, 2020. https://www.portlandonline.com/portlandplan/index.cfm?c=52256&a=288098.
 [^5]: “BPS Welcome Services / Student Assignment Policy.” Accessed April 20, 2020. http%3A%2F%2Fwww.bostonpublicschools.org%2Fsite%2FDefault.aspx%3FPageID%3D6544.
+[^6]: MassGIS Data: Acute Care Hospitals. “Massachusetts Document Repository.” Accessed April 20, 2020. https://docs.digital.mass.gov/dataset/massgis-data-acute-care-hospitals.
+[^7]: MassGIS Data: Community Health Centers. “Massachusetts Document Repository.” Accessed April 20, 2020. https://docs.digital.mass.gov/dataset/massgis-data-community-health-centers.
