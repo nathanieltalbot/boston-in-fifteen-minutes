@@ -15,7 +15,7 @@ const PopupContent = (props) => {
 export default function Hospitals(props) {
     const data = useStaticQuery(graphql`
         query HospitalQuery{
-            ogrGeoJsonLayer(name: {eq: "OGRGeoJSON"}) {
+            acuteCareLayer(name: {eq: "OGRGeoJSON"}) {
                 features {
                     featureFields {
                         name
@@ -46,7 +46,7 @@ export default function Hospitals(props) {
     //console.log(data)
     data.tractsBostonBariLayer.features.map((feature) => {
         const nbhd_point = L.latLng(feature.geometry.centroid.y, feature.geometry.centroid.x);
-        const hospital_list = data.ogrGeoJsonLayer.features.map((hospital) => {
+        const hospital_list = data.acuteCareLayer.features.map((hospital) => {
             //const coords = utmToLatLng(hospital.geometry.coordinates)
             return({"name": hospital.featureFields.name, "distance": MeterToMile(nbhd_point.distanceTo(L.latLng(hospital.geometry.coordinates[1], hospital.geometry.coordinates[0])))})
         })

@@ -9,13 +9,13 @@ import { FIFTEEN_DIST } from '../lib/vars.js';
 var Rainbow = require('rainbowvis.js');
 
 const PopupContent = (props) => {
-    return(<><b>Closest Hospital: </b> {props.hospital.name}, {props.hospital.distance.toFixed(2)} miles away</>)
+    return(<><b>Closest Health Center: </b> {props.hospital.name}, {props.hospital.distance.toFixed(2)} miles away</>)
 }
 
 export default function HealthCenters(props) {
     const data = useStaticQuery(graphql`
         query HealthCenterQuery{
-            chcsPtLayer(name: {eq: "CHCS_PT"}) {
+            chcsptLayer(name: {eq: "OGRGeoJSON"}) {
                 features {
                     featureFields {
                         SITE_NAME
@@ -46,9 +46,8 @@ export default function HealthCenters(props) {
     //console.log(data)
     data.tractsBostonBariLayer.features.map((feature) => {
         const nbhd_point = L.latLng(feature.geometry.centroid.y, feature.geometry.centroid.x);
-        const hospital_list = data.chcsPtLayer.features.map((hospital) => {
+        const hospital_list = data.chcsptLayer.features.map((hospital) => {
             const coords = utmToLatLng(hospital.geometry.coordinates)
-            console.log(coords)
             return({"name": hospital.featureFields.SITE_NAME, "distance": MeterToMile(nbhd_point.distanceTo(L.latLng(coords)))})
         })
         hospital_list.sort((a,b) => a.distance - b.distance)
