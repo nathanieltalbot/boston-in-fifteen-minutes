@@ -56,6 +56,26 @@ defines the basic needs as such: “There are six things that make an urbanite h
 
 ***
 
+## How do we define a "Fifteen-Minute" radius?
+
+Since the major metric in this analysis concerns determining access in a "fifteen-minute" radius, it's important to define exactly what we determine 
+what lies within this radius. Per Healthline, the average human walking speed is 3-4 miles per hour -- more specifically, for ages to 20-49 the average speed
+is somewhere between 3.0 and 3.2 miles per hour.[^5] At a speed of around 3 miles per hour, conservatively, a person walking at 3 miles per hour would cover
+around 0.75 miles, which will be the baseline for our analysis.
+
+For the sake of simplicity, we're calculating the majority of these distances from the midpoint of the neighborhood/census tract, using crow-flies distances.
+This does not show the exact distance from point A to point B -- further analysis could use a tool like the [Google Maps Directions API](https://developers.google.com/maps/documentation/directions/start)
+which would calculate walking time based on an ideal route on walking-friendly roads. Additionally, unless otherwise stated, these distances are 
+calculated from the center point of the census tract, again for the sake of simplicity.
+
+The fifteen-minute plan in Paris also included biking as a mode of transit within the fifteen-minute radius. While bike infrastructure is an important transportation
+question, it too is subject to a lot of variability based off of the infrastructure in a given neighborhood -- a bike commute along the Southwest Corridor, for example,
+is significantly different than a bike commute along Massachusetts Avenue or Huntington Avenue, both in terms of speed and in terms of safety. Given that are
+likely a number of people who may not be comfortable with the latter, not to mention people who are older or differently abled, this would be an inexact measure.
+There are, however, a number of good fields of analysis for biking accessibility, such as the [Level of Traffic Stress criteria](http://www.northeastern.edu/peter.furth/criteria-for-level-of-traffic-stress/) 
+developed by Peter Furth of the Northeasten College of Engineering, that could be used to expand on this analysis.
+
+
 ## The Fabric of Boston
 
 Our basic unit of analysis for the city will be census tracts, one unit of magnitude below neighborhoods. Shown below is each census tract
@@ -167,7 +187,7 @@ to residents? To do this, we'll break education down into three categories:
 
 Boston's [data portal](https://data.boston.gov/) offers us a data set with the location of each library in the Boston Public Library system. This map uses this data to show the
 distance from the given census tract to the closest library. For the sake of simplicity, the distance is calculated as the crow-flies distance from the center of the tract (rather than
-the distance if one was traveling along roads). Again, a green to red scale was used here -- green representing a distance of `<= 0.8 miles` (as discissed above), and red indicating a distance 
+the distance if one was traveling along roads). Again, a green to red scale was used here -- green representing a distance of `<= 0.8 miles` (as discussed above), and red indicating a distance 
 of `>= 3 miles`.
 
 <LoadableComponent component="Map" {...mapSettings}>
@@ -184,7 +204,7 @@ It's unfortunately hard to get a perfect image of public school access in Boston
 
 To start, we can take a high-level look at the Boston Public Schools Student Assignment Policy as it is stated on their website. The Boston Public School system offers
 families a choice of where to send their students for grades K-8 from a list of schools tailored to their home address, on the following criteria: 
-"every school within a one-mile radius of their home plus, as needed, nearby high-quality schools based on BPS's School Quality Framework (SQF) system of measurement".[^5]
+"every school within a one-mile radius of their home plus, as needed, nearby high-quality schools based on BPS's School Quality Framework (SQF) system of measurement".[^6]
 
 Per this policy, every household should be able to choose a K-8 school that is within 15-20 minutes of their household (0.8-1 mile, roughly). High schools remain, per the website, citywide options.
 Working off of this, we can look at how many K-8 schools every census tract has access to in a one-mile radius. We are using again data from the [Boston Data Portal](https://data.boston.gov/) on public schools
@@ -221,7 +241,7 @@ further out in the city, and especially in neighborhoods like Jamaica Plain and 
 
 We'll now turn to the well-being metrics in a city -- chiefly, hospitals, health centers, and urgent care. We're using data from MassGIS
 data sources for acute care hospitals within the city, which 
-"contain a majority of medical-surgical, pediatric, obstetric, and maternity beds, as defined by the Massachusetts Department of Public Health (DPH)". [^6]
+"contain a majority of medical-surgical, pediatric, obstetric, and maternity beds, as defined by the Massachusetts Department of Public Health (DPH)". [^7]
 
 
 ### Hospitals
@@ -241,7 +261,7 @@ not be walking to medical care, but since acute care hospitals provide a large r
 
 We'll turn next to MassGIS data on community health centers, which cover a broad range of other non-acute medical services. MassGIS uses the definition
 from the Massachusetts League of Community Health Centers, which "defines a community health center as a non-profit community-based organization that offers comprehensive primary and preventive health care, 
-including medical, social and/or mental health services, to anyone in need regardless of their medical status, ability to pay, culture or ethnicity"[^7]
+including medical, social and/or mental health services, to anyone in need regardless of their medical status, ability to pay, culture or ethnicity"[^8]
 
 <LoadableComponent component="Map" {...mapSettings}>
     <LoadableComponent component="HealthCenters" />
@@ -257,6 +277,7 @@ than in the previous map. Still, there are a number of areas with poor access --
 [^2]: Bliss, Laura. “Inside a Pedestrian-First ‘Superblock.’” CityLab. Accessed April 19, 2020. https://www.citylab.com/transportation/2018/08/inside-a-pedestrian-first-superblock/566864/.
 [^3]: “Every One. Every Day.” Accessed April 19, 2020. https://www.weareeveryone.org/.
 [^4]: “20-Minute Neighborhoods.” Accessed April 19, 2020. https://www.portlandonline.com/portlandplan/index.cfm?c=52256&a=288098.
-[^5]: “BPS Welcome Services / Student Assignment Policy.” Accessed April 20, 2020. https://www.bostonpublicschools.org/assignment.
-[^6]: MassGIS Data: Acute Care Hospitals. “Massachusetts Document Repository.” Accessed April 20, 2020. https://docs.digital.mass.gov/dataset/massgis-data-acute-care-hospitals.
-[^7]: MassGIS Data: Community Health Centers. “Massachusetts Document Repository.” Accessed April 20, 2020. https://docs.digital.mass.gov/dataset/massgis-data-community-health-centers.
+[^5]: Healthline. “Average Walking Speed: Pace, and Comparisons by Age and Sex.” Accessed April 20, 2020. https://www.healthline.com/health/exercise-fitness/average-walking-speed.
+[^6]: “BPS Welcome Services / Student Assignment Policy.” Accessed April 20, 2020. https://www.bostonpublicschools.org/assignment.
+[^7]: MassGIS Data: Acute Care Hospitals. “Massachusetts Document Repository.” Accessed April 20, 2020. https://docs.digital.mass.gov/dataset/massgis-data-acute-care-hospitals.
+[^8]: MassGIS Data: Community Health Centers. “Massachusetts Document Repository.” Accessed April 20, 2020. https://docs.digital.mass.gov/dataset/massgis-data-community-health-centers.
