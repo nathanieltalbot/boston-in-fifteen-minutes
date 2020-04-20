@@ -70,3 +70,6 @@ yarn-error.log
 
 # Ignoring any zip files that we keep in here
 *.zip
+
+# Ignoring python env
+env

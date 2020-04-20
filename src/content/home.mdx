@@ -309,7 +309,7 @@ There is of course another project's worth of analysis on how these metrics can 
 these concerns, with plans to put all city residents within a 10-minute walk of bikeshare, transit, and carshare services, and plans to reduce commute times by 10%.[^20] These incremental efforts will
 undoubtedly make a large difference in city life for both residents and those who commute in, and will perhaps one day improve the metrics shown in this project. 
 
-## Attributions
+## Attributions & Tools Used
 This project was made possible with a number of different open-source libraries and tools, offered generously under the MIT license by their developers.
 
 The site was built with [GatsbyJS](https://www.gatsbyjs.org/), a static site generator, with [ReactJS](https://reactjs.org/) handling the frontend and [GraphQL](https://graphql.org/) handling data queries.
@@ -317,12 +317,19 @@ The site was built with [GatsbyJS](https://www.gatsbyjs.org/), a static site gen
 This repository is built off of the [Gatsby Leaflet Starter](https://github.com/colbyfayock/gatsby-starter-leaflet) offered under the MIT license by Colby Fayock.
 
 All mapping was done with the [LeafletJS](https://leafletjs.com/) library, offered as React components by [React-Leaflet](https://react-leaflet.js.org/). All base maps are provided by [OpenStreetMap](https://www.openstreetmap.org/).
+[React-Boostrap](https://react-bootstrap.github.io/) provided all non-mapping frontend components.
 
 A number of smaller open-source packages were invaluable for the visualizations. They include [Rainbowvis.js](https://github.com/anomal/RainbowVis-JS) which provided the color gradient for the mapping,
 [Gatsby-Source-Geo](https://github.com/andrewl/gatsby-source-geo), a Gatsby plugin that handles GeoJSON and Shapefile data, and [proj4js](http://proj4js.org/) 
 which converted GIS northings and eastings into latitude and longitude.
 
-[Zotero](https://www.zotero.org/) was used to collect citations, and [MDX](https://mdxjs.com/) was used to render everything.
+[Zotero](https://www.zotero.org/) was used to collect citations, and [MDX](https://mdxjs.com/) was used to lay out content. [Loadable Components](https://loadable-components.com/) allowed mapping components
+that required access to the browser window to be included in .mdx files (see the [LoadableComponent](https://github.com/nathanieltalbot/boston-in-fifteen-minutes/blob/master/src/components/LoadableComponent.js) file for details). 
+
+A simple Python script was used to parse tree data with census tracts (a 13-minute operation that was impractical to do every time the site was built). This code exists in [python-utils](https://github.com/nathanieltalbot/boston-in-fifteen-minutes/tree/master/python-utils)
+and made use of the [Shapely](https://pypi.org/project/Shapely/) and [pyshp](https://pypi.org/project/pyshp/) packages.
+
+This site is built and hosted by [Netlify](https://www.netlify.com/).
 
 [^1]: O’Sullivan, Feargus. “It’s Time for the ‘15-Minute City.’” CityLab. Accessed April 19, 2020. https://www.citylab.com/environment/2020/02/paris-election-anne-hidalgo-city-planning-walks-stores-parks/606325/.
 [^2]: Bliss, Laura. “Inside a Pedestrian-First ‘Superblock.’” CityLab. Accessed April 19, 2020. https://www.citylab.com/transportation/2018/08/inside-a-pedestrian-first-superblock/566864/.
