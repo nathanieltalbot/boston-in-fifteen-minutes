@@ -36,7 +36,7 @@ const IndexPage = () => {
     <Layout pageName="home">
       <Helmet>
         <title>{data.site.siteMetadata.title}</title>
-        <description>{data.site.siteMetadata.description}</description>
+        <meta name="description" content={data.site.siteMetadata.description}/>
       </Helmet>
       <Container style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
       <Jumbotron style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
