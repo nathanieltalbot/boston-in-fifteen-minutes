@@ -26,16 +26,6 @@ const IndexPage = () => {
             }
           }`)
   
-  /**
-   * mapEffect
-   * @description Fires a callback once the page renders
-   * @example Here this is and example of being used to zoom in and set a popup on load
-   */
-
-  
-
-
-
   return (
     <Layout pageName="home">
       <Helmet>
@@ -45,7 +35,7 @@ const IndexPage = () => {
       <Jumbotron style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
         <h1>Boston, In Fifteen Minutes</h1>
         <h4>An analysis of accessibility in Boston.</h4>
-        <h5>Presented by Nat Talbot, fourth-year student, Khoury College of Computer Sciences</h5>
+        <h5>Nat Talbot, Khoury College of Computer Sciences</h5>
       </Jumbotron>
       <MDXRenderer>{data.mdx.body}</MDXRenderer>
       
