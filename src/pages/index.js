@@ -40,8 +40,8 @@ const IndexPage = () => {
       </Helmet>
       <Container style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
       <Jumbotron style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
-        <h1>Boston, In Fifteen Minutes</h1>
-        <h4>An analysis of accessibility in Boston.</h4>
+        <h1>{data.site.siteMetadata.title}</h1>
+        <h4>{data.site.siteMetadata.description}</h4>
         <h5>Nat Talbot, Khoury College of Computer Sciences</h5>
       </Jumbotron>
       <MDXRenderer>{data.mdx.body}</MDXRenderer>
