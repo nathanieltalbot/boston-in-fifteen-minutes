@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: 'Boston in Fifteen Minutes',
+    title: 'Boston, in Fifteen Minutes',
     author: 'Nat Talbot',
-    description: 'An analysis of accessibility in Boston.',
+    description: "Analyzing Boston's urban design, census tract by census tract.",
   },
   plugins: [
     'gatsby-plugin-resolve-src',

@@ -24,12 +24,19 @@ const IndexPage = () => {
             mdx(frontmatter: {title: {eq: "Home"}}) {
               body
             }
+            site {
+              siteMetadata {
+                title
+                description
+              }
+            }
           }`)
   
   return (
     <Layout pageName="home">
       <Helmet>
-        <title>Home Page</title>
+        <title>{data.site.siteMetadata.title}</title>
+        <description>{data.site.siteMetadata.description}</description>
       </Helmet>
       <Container style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
       <Jumbotron style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
