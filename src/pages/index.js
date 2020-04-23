@@ -39,9 +39,9 @@ const IndexPage = () => {
   return (
     <Layout pageName="home">
       <Helmet>
-        <meta name="og:title" content={data.site.siteMetadata.title}/>
-        <meta name="og:description" content={data.site.siteMetadata.description}/>
-        <meta name="og:image" content={data.imageSharp.fixed.src}/>
+        <meta property="og:title" content={data.site.siteMetadata.title}/>
+        <meta property="og:description" content={data.site.siteMetadata.description}/>
+        <meta property="og:image" content={data.imageSharp.fixed.src}/>
       </Helmet>
       <Container style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
       <Jumbotron style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
