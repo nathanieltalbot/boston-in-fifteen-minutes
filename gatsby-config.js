@@ -1,3 +1,5 @@
+const path = require(`path`)
+
 module.exports = {
   siteMetadata: {
     title: 'Boston, in Fifteen Minutes',
@@ -12,11 +14,20 @@ module.exports = {
     `gatsby-plugin-mdx`,
     `gatsby-transformer-csv`,
     `gatsby-transformer-json`,
+    `gatsby-transformer-sharp`, 
+    `gatsby-plugin-sharp`,
 
     /*{
         resolve: `gatsby-source-places-api`,
         options: { query: "grocery stores or supermarkets"},
     },*/
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: path.join(__dirname, `src`, `assets`, `images`),
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

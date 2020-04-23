@@ -29,14 +29,19 @@ const IndexPage = () => {
                 description
               }
             }
+            imageSharp(fixed: {}, fluid: {originalName: {eq: "link-preview.png"}}) {
+              fixed {
+                src
+              }
+            }
           }`)
   
   return (
     <Layout pageName="home">
       <Helmet>
-        <title>{data.site.siteMetadata.title}</title>
-        <meta name="description" content={data.site.siteMetadata.description}/>
-        <meta name="image" content={'../assets/images/link-preview.png'}/>
+        <meta name="og:title" content={data.site.siteMetadata.title}/>
+        <meta name="og:description" content={data.site.siteMetadata.description}/>
+        <meta name="og:image" content={data.imageSharp.fixed.src}/>
       </Helmet>
       <Container style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
       <Jumbotron style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
