@@ -29,8 +29,8 @@ const IndexPage = () => {
                 description
               }
             }
-            imageSharp(fixed: {}, fluid: {originalName: {eq: "link-preview.png"}}) {
-              fixed {
+            imageSharp(fluid: {originalName: {eq: "link-preview.png"}}) {
+              fluid(maxWidth: 800) {
                 src
               }
             }
@@ -41,7 +41,7 @@ const IndexPage = () => {
       <Helmet>
         <meta property="og:title" content={data.site.siteMetadata.title}/>
         <meta property="og:description" content={data.site.siteMetadata.description}/>
-        <meta property="og:image" content={"https://boston.nat-talbot.com" + data.imageSharp.fixed.src}/>
+        <meta property="og:image" content={"https://boston.nat-talbot.com" + data.imageSharp.fluid.src}/>
       </Helmet>
       <Container style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
       <Jumbotron style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
