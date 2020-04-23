@@ -7,8 +7,7 @@ import { Container, Jumbotron, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { useStaticQuery, graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
-
+import { MDXRenderer } from 'gatsby-plugin-mdx' 
 
 /**
   * randColorStyle
@@ -37,6 +36,7 @@ const IndexPage = () => {
       <Helmet>
         <title>{data.site.siteMetadata.title}</title>
         <meta name="description" content={data.site.siteMetadata.description}/>
+        <meta name="image" content={'../assets/images/link-preview.png'}/>
       </Helmet>
       <Container style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
       <Jumbotron style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
