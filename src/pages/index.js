@@ -41,7 +41,7 @@ const IndexPage = () => {
       <Helmet>
         <meta property="og:title" content={data.site.siteMetadata.title}/>
         <meta property="og:description" content={data.site.siteMetadata.description}/>
-        <meta property="og:image" content={data.imageSharp.fixed.src}/>
+        <meta property="og:image" content={data.imageSharp.fixed.src.substring(1)}/>
       </Helmet>
       <Container style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
       <Jumbotron style={{'display': 'flex', 'align-items':'center', 'flexDirection':'column'}}>
