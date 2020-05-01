@@ -1,11 +1,12 @@
 const path = require(`path`)
 
-module.exports = {
-  siteMetadata: {
+const metadata = {
     title: 'Boston, in Fifteen Minutes',
     author: 'Nat Talbot',
     description: "Analyzing Boston's urban design, census tract by census tract.",
-  },
+}
+module.exports = {
+  siteMetadata: metadata,
   plugins: [
     'gatsby-plugin-resolve-src',
     'gatsby-plugin-sass',
@@ -18,6 +19,21 @@ module.exports = {
     `gatsby-plugin-sharp`,
     {
       resolve: 'gatsby-plugin-zopfli'
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: metadata.title,
+        short_name: "BostonInFifteen",
+        start_url: "/",
+        background_color: "#006078",
+        theme_color: "#006078",
+        icon: "src/assets/images/init.png", // This path is relative to the root of the site.
+        // An optional attribute which provides support for CORS check.
+        // If you do not provide a crossOrigin option, it will skip CORS for manifest.
+        // Any invalid keyword or empty string defaults to `anonymous`
+        crossOrigin: `use-credentials`,
+      },
     },
 
     /*{
