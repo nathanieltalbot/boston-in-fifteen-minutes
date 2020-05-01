@@ -16,6 +16,9 @@ module.exports = {
     `gatsby-transformer-json`,
     `gatsby-transformer-sharp`, 
     `gatsby-plugin-sharp`,
+    {
+      resolve: 'gatsby-plugin-zopfli'
+    },
 
     /*{
         resolve: `gatsby-source-places-api`,
