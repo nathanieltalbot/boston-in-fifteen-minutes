@@ -62,8 +62,6 @@ export default function Libraries() {
         feature.closest_library = library_list[0]
     })
 
-    console.log(data)
-
     var gradient = new Rainbow();
     gradient.setSpectrum('green', 'yellow', 'red')
     gradient.setNumberRange(FIFTEEN_DIST, 3)
